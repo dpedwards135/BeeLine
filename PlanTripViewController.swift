@@ -11,127 +11,38 @@ import UIKit
 
 class PlanTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var currentTrip = Trip(orientation: "origin", orientationPoint: "New York City", waypoints: ["New Orleans", "Boston"])
+    var currentTrip = Trip(orientation: "", orientationPoint: "", waypoints: ["", ""])
     
     let defaults = UserDefaults.standard
     
+    var tripKey = ""
+    
     override func viewDidLoad() {
-        /*
         
-        defaults.removeObject(forKey: "currentTrip")
-
-        if defaults.object(forKey: "currentTrip") == nil {
-            var array1 : [String] = [String]()
-            array1.append("spaghetti")
-            array1.append("")
-            array1.append("")
-            array1.append("end")
-            
-            defaults.set(array1, forKey: "currentTrip")
-            defaults.synchronize()
-        } else {
-            var array1 : [String] = [String]()
-            array1.append("linguine")
-            array1.append("")
-            array1.append("")
-            array1.append("end")
-            
-            defaults.set(array1, forKey: "currentTrip")
-            defaults.synchronize()
-        }
+        //Put code here that checks if there is a key sent in to access a new trip, otherwise assign "currentTrip" key
+        // ELSE:
+        tripKey = "currentTrip"
+        //
         
-        defaults.set("Linguine", forKey: "currentTrip")
-        
-        if let testArray : AnyObject? = defaults.object(forKey: "currentTrip") as AnyObject?? {
-            var savedTrip : [NSString] = testArray! as! [NSString]
-            print(savedTrip)
-        }
-        */
-        //let def = UserDefaults.standard
-        var key = "keySave"
-        
-        var array1: [NSString] = [NSString]()
-        array1.append("value 1")
-        array1.append("value 2")
-        
-        //save
-        var defaults = UserDefaults.standard
-        defaults.set(array1, forKey: key)
-        defaults.synchronize()
-        
-        //read
-        if let testArray : AnyObject? = defaults.object(forKey: key) as AnyObject?? {
-            var readArray : [NSString] = testArray! as! [NSString]
-            print(readArray)
-        }
-        
+        currentTrip = currentTrip.readTripFromDefaults(key: tripKey)
+        //What I want to have happen: If there is no key sent in then just access currentTrip. Whatever is in the view when you exit, that is saved as "currentTrip", if a key is sent in to this view, use that to access the trip instead.
 
     }
     
-    func saveTripToDefaults(trip : Trip) {
-        var key = "keySave"
-        
-        var array1: [NSString] = [NSString]()
-        array1.append("value 1")
-        array1.append("value 2")
-        
-        //save
-        var defaults = UserDefaults.standard
-        defaults.set(array1, forKey: key)
-        defaults.synchronize()
-        
-        //read
-        if let testArray : AnyObject? = defaults.object(forKey: key) as AnyObject?? {
-            var readArray : [NSString] = testArray! as! [NSString]
-            print(readArray)
-        }
-
-    }
-    
-    func readTripFromDefaults(key : String) -> Trip {
-        
-        var key = key
-        
-        var readArray : [NSString]
-        
-        var savedTrip = Trip(orientation: "", orientationPoint: "", waypoints: [])
-        
-        readArray = defaults.object(forKey: key) as! [NSString]
-        
-        print(readArray)
-        
-        savedTrip.orientation = readArray[0] as String
-        
-        savedTrip.orientationPoint = readArray[1] as String
-        
-        var waypointsArray : [NSString] = []
-        
-        var i = 1
-        while i <= readArray.count {
-            waypointsArray.append(readArray[i+1])
-            i += 1
-        }
-        
-        return savedTrip
+    func saveTrip() {
+        //Create SAVE TRIP button so that you don't get the popup every time
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        //defaults.set((orientation: "origin", orientationPoint: "Richmond, VA", waypoints: ["Farmville, VA", "Lynchburg, VA", "Charlotte, NC"]), forKey: "currentTrip")
- 
-        //defaults.set("SuperCal", forKey: "currentTrip")
-        print("View Disappearing")
-        var readArray : [NSString]  = defaults.object(forKey: "keySave") as! [NSString]
-        print(readArray)
+        currentTrip.orientation = "origin"
+        currentTrip.orientationPoint = "New York City"
+        currentTrip.waypoints = ["Omaha", "New Orleans", "Salt Lake", "Jackson", "Tampa"]
+        
+        //add code that presents popup that asks if you want to save this trip, and use current date as key
+        currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
     }
     
-    // MARK: Properties
-    
-    // Get current trip
-    
-    
-        
-        //Trip(orientation: "origin", orientationPoint: "Richmond, VA", waypoints: ["Farmville, VA", "Lynchburg, VA", "Charlotte, NC"])
     
     func deleteRow(sender: UIButton, indexPath : IndexPath, tableView : UITableView) {
         currentTrip.waypoints.remove(at:indexPath.row)

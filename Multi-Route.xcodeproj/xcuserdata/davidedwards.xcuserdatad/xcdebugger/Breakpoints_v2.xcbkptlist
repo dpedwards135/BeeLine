@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PlanTripViewController.swift"
-            timestampString = "498329014.995212"
+            timestampString = "498332942.841015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PlanTripViewController.swift"
-            timestampString = "498329014.995212"
+            timestampString = "498332942.841015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "tableView(tableView:canEditRowAtIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PlanTripViewController.swift"
-            timestampString = "498329014.995212"
+            timestampString = "498332942.841015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PlanTripViewController.swift"
-            timestampString = "498328834.525699"
+            timestampString = "498332495.235466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -105,13 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PlanTripViewController.swift"
-            timestampString = "498329921.553081"
+            filePath = "Multi-Route/Trips.swift"
+            timestampString = "498333939.279077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "readTripFromDefaults()"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "readTripFromDefaults(key:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
