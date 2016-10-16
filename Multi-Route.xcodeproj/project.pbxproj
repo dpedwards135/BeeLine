@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0C9D851DA8000600667282 /* MyTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C9D841DA8000600667282 /* MyTripsViewController.swift */; };
+		3C0C9D871DA8096E00667282 /* PlanTripCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C9D861DA8096E00667282 /* PlanTripCellTableViewCell.swift */; };
+		3C44664E1DA3BC86006EA4B7 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C44664D1DA3BC86006EA4B7 /* TestViewController.swift */; };
+		3C4466521DA456D8006EA4B7 /* PlanTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4466511DA456D8006EA4B7 /* PlanTripViewController.swift */; };
+		3C4466541DA4580A006EA4B7 /* Trips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4466531DA4580A006EA4B7 /* Trips.swift */; };
 		3CFC7C191DA04A5D00B3292F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC7C181DA04A5D00B3292F /* AppDelegate.swift */; };
 		3CFC7C1B1DA04A5D00B3292F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */; };
 		3CFC7C1E1DA04A5D00B3292F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CFC7C1C1DA04A5D00B3292F /* Main.storyboard */; };
@@ -34,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C0C9D841DA8000600667282 /* MyTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTripsViewController.swift; sourceTree = "<group>"; };
+		3C0C9D861DA8096E00667282 /* PlanTripCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanTripCellTableViewCell.swift; sourceTree = "<group>"; };
+		3C44664D1DA3BC86006EA4B7 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = ../TestViewController.swift; sourceTree = "<group>"; };
+		3C4466511DA456D8006EA4B7 /* PlanTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlanTripViewController.swift; path = ../PlanTripViewController.swift; sourceTree = "<group>"; };
+		3C4466531DA4580A006EA4B7 /* Trips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trips.swift; sourceTree = "<group>"; };
 		3CFC7C151DA04A5D00B3292F /* Multi-Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Multi-Route.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFC7C181DA04A5D00B3292F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +107,11 @@
 		3CFC7C171DA04A5D00B3292F /* Multi-Route */ = {
 			isa = PBXGroup;
 			children = (
+				3C4466511DA456D8006EA4B7 /* PlanTripViewController.swift */,
+				3C0C9D861DA8096E00667282 /* PlanTripCellTableViewCell.swift */,
+				3C0C9D841DA8000600667282 /* MyTripsViewController.swift */,
+				3C4466531DA4580A006EA4B7 /* Trips.swift */,
+				3C44664D1DA3BC86006EA4B7 /* TestViewController.swift */,
 				3CFC7C181DA04A5D00B3292F /* AppDelegate.swift */,
 				3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */,
 				3CFC7C1C1DA04A5D00B3292F /* Main.storyboard */,
@@ -259,7 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4466541DA4580A006EA4B7 /* Trips.swift in Sources */,
+				3C0C9D871DA8096E00667282 /* PlanTripCellTableViewCell.swift in Sources */,
+				3C0C9D851DA8000600667282 /* MyTripsViewController.swift in Sources */,
+				3C4466521DA456D8006EA4B7 /* PlanTripViewController.swift in Sources */,
 				3CFC7C1B1DA04A5D00B3292F /* ViewController.swift in Sources */,
+				3C44664E1DA3BC86006EA4B7 /* TestViewController.swift in Sources */,
 				3CFC7C191DA04A5D00B3292F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,6 +525,7 @@
 				3CFC7C3F1DA04A5E00B3292F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CFC7C401DA04A5E00B3292F /* Build configuration list for PBXNativeTarget "Multi-RouteTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +534,7 @@
 				3CFC7C421DA04A5E00B3292F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CFC7C431DA04A5E00B3292F /* Build configuration list for PBXNativeTarget "Multi-RouteUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +543,7 @@
 				3CFC7C451DA04A5E00B3292F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
