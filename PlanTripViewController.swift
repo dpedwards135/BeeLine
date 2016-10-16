@@ -17,6 +17,9 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var tripKey = ""
     
+    
+    @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         
         //Put code here that checks if there is a key sent in to access a new trip, otherwise assign "currentTrip" key
@@ -34,24 +37,40 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        /*
         currentTrip.orientation = "origin"
         currentTrip.orientationPoint = "New York City"
         currentTrip.waypoints = ["Omaha", "New Orleans", "Salt Lake", "Jackson", "Tampa"]
-        
+        */
+ 
         //add code that presents popup that asks if you want to save this trip, and use current date as key
+
+        writeCurrentTrip()
         currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
     }
     
-    
-    func deleteRow(sender: UIButton, indexPath : IndexPath, tableView : UITableView) {
-        currentTrip.waypoints.remove(at:indexPath.row)
-        tableView.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
+    func writeCurrentTrip() {
+        let orientationPointIndexPath = IndexPath(row: 0, section: 0)
+        
+        currentTrip.orientation = "origin"
+        
+        var orientationPointCell = tableView.cellForRow(at: orientationPointIndexPath) as! PlanTripCellTableViewCell
+        currentTrip.orientation = orientationPointCell.mainLabel.text!
+        currentTrip.orientationPoint = orientationPointCell.textInput.text!
+        
+        var numberOfRows = tableView.numberOfRows(inSection: 0)
+        currentTrip.waypoints.removeAll()
+        
+        for i in 1...(numberOfRows-2) {
+            var waypointIndex = IndexPath(row: i, section: 0)
+            var waypointCell = tableView.cellForRow(at: waypointIndex) as! PlanTripCellTableViewCell
+            var waypoint = waypointCell.textInput.text!
+            currentTrip.waypoints.append(waypoint)
+        }
+        
+        //currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
     }
-    
-    func buttonTouch(sender: UIButton) {
-        print("Button Touch")
-    }
+
     
 
     
@@ -61,9 +80,9 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
         
         
         if self.currentTrip.waypoints.count == 0 {
-            return 2
+            return 3
         } else {
-            return (self.currentTrip.waypoints.count) + 1
+            return (self.currentTrip.waypoints.count) + 2
         }
         
     }
@@ -71,49 +90,80 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DestinationCell")! as! PlanTripCellTableViewCell
+       /* var cell = tableView.dequeueReusableCell(withIdentifier: "DestinationCell")! as! PlanTripCellTableViewCell  */
         
+        if indexPath.row <= currentTrip.waypoints.endIndex {
+            
         
-        
-        // Set the name
-        if indexPath.row == 0 {
-            cell.mainLabel?.text = "Origin"
-            cell.textInput?.text = currentTrip.orientationPoint
-            //Disappear "Clear Button
+            var cell = tableView.dequeueReusableCell(withIdentifier: "DestinationCell")! as! PlanTripCellTableViewCell
             
             
-
-        } else {
-            cell.mainLabel?.text = "Destination"
-            if currentTrip.waypoints == [] {
-                cell.textInput?.text = ""
+            
+            // Set the name
+            if indexPath.row == 0 {
+                cell.mainLabel?.text = currentTrip.orientation
+                cell.textInput?.text = currentTrip.orientationPoint
+                cell.clearButton?.setTitle("Origin/Destination", for: UIControlState.normal)
+                cell.clearButton?.addTarget(self, action: #selector(originDestinationSwitch), for: UIControlEvents.touchUpInside)
+                
+                
+                
             } else {
-                cell.textInput?.text = currentTrip.waypoints[indexPath.row - 1 ]
-
-            }        }
-
-       /* if let detailTextLabel = cell.detailTextLabel {
-            let stopsText = point
-            detailTextLabel.text = "Point: \(stopsText)"
-        } */
-
+                cell.mainLabel?.text = "Stop"
+                if currentTrip.waypoints == [] {
+                    cell.textInput?.text = ""
+                } else {
+                    cell.textInput?.text = currentTrip.waypoints[indexPath.row - 1 ]
+                    cell.clearButton.tag = indexPath.row - 1
+                    cell.clearButton.addTarget(self, action: #selector(removeWaypoint), for: UIControlEvents.touchUpInside)
+                    
+                }
+                
+            }
+            return cell
+        } else {
+            var cell = tableView.dequeueReusableCell(withIdentifier: "AddButtonCell") as! AddButtonCell
+            cell.addButton.addTarget(self, action: #selector(addWaypoint), for: UIControlEvents.touchUpInside)
+            
+            return cell
+            
+        }
         
-        return cell
+        
     }
     
     
-    
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
-    {
-        if editingStyle == .delete
-        {
-            currentTrip.waypoints.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
+
+    func originDestinationSwitch(sender: UIButton) {
+        var indexPath = IndexPath(row: 0, section: 0)
+        
+        var cell = tableView.cellForRow(at: indexPath) as! PlanTripCellTableViewCell
+        var orientationType = cell.mainLabel.text!
+        if orientationType == "Origin" {
+            cell.mainLabel.text = "Destination"
+        } else {
+            cell.mainLabel.text = "Origin"
         }
     }
+    
+    func addWaypoint() {
+        writeCurrentTrip()
+        
+        currentTrip.waypoints.append("")
+        
+        tableView.reloadData()
+        
+    }
+    
+    func removeWaypoint(sender:UIButton) {
+        writeCurrentTrip()
+        
+        var waypointIndex = sender.tag
+        
+        currentTrip.waypoints.remove(at: waypointIndex)
+        
+        tableView.reloadData()
+    }
+    
+    
 }

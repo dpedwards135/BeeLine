@@ -157,8 +157,8 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mF4-gw-r6d">
-                                            <frame key="frameInset" minX="321" minY="10" width="46" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mF4-gw-r6d">
+                                            <frame key="frameInset" minX="152" minY="10" width="215" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Clear"/>
                                         </button>
@@ -177,12 +177,33 @@
                                     <outlet property="textInput" destination="JDs-FU-XmM" id="vwt-of-cvt"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddButtonCell" id="D0X-SU-Hdm" customClass="AddButtonCell" customModule="Multi_Route" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="174" width="375" height="82"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D0X-SU-Hdm" id="scl-Ae-43j">
+                                    <frame key="frameInset" width="375" height="82"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNZ-Lr-TDY">
+                                            <frame key="frameInset" minX="164" minY="26" width="46" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Add"/>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addButton" destination="sNZ-Lr-TDY" id="SKq-2Z-9aA"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="uVk-60-2WP" id="bSv-ro-cru"/>
                             <outlet property="delegate" destination="uVk-60-2WP" id="gP7-Rt-zMq"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="tableView" destination="I3N-4u-cYN" id="jYM-El-rhO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fh-Ac-cx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
