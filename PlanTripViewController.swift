@@ -11,11 +11,54 @@ import UIKit
 
 class PlanTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var saveTripButton: UIButton!
+    
+    @IBAction func saveToMyTrips(_ sender: AnyObject) {
+        
+        writeCurrentTrip()
+        
+        let dateformatter = DateFormatter()
+        
+        dateformatter.dateStyle = DateFormatter.Style.short
+        
+        dateformatter.timeStyle = DateFormatter.Style.long
+        
+        let myTripKey = dateformatter.string(from: Date())
+        
+        currentTrip.saveTripToDefaults(key: myTripKey, trip: currentTrip)
+        
+        var tripIndexKey = "tripIndex"
+        
+        if let objectCheck : AnyObject? = defaults.object(forKey: tripIndexKey) as AnyObject?? {
+            
+            var tripIndexArray = defaults.object(forKey: tripIndexKey) as! [String]
+            
+            print(tripIndexArray)
+            
+            tripIndexArray.append(myTripKey)
+            
+            defaults.set(tripIndexArray, forKey: tripIndexKey)
+        } else {
+            var tripIndexArray : [String] = []
+            tripIndexArray.append(myTripKey)
+            
+            defaults.set(tripIndexArray, forKey: tripIndexKey)
+        }
+        let alertController = UIAlertController(title: "Multi-Route", message:
+            "Your trip has been saved to My Trips", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
     var currentTrip = Trip(orientation: "", orientationPoint: "", waypoints: ["", ""])
     
     let defaults = UserDefaults.standard
     
     var tripKey = ""
+    
+    var currentTripKey = "currentTrip"
     
     
     @IBOutlet var tableView: UITableView!
@@ -24,8 +67,11 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
         
         //Put code here that checks if there is a key sent in to access a new trip, otherwise assign "currentTrip" key
         // ELSE:
-        tripKey = "currentTrip"
-        //
+        if tripKey == "" {
+            
+            tripKey = currentTripKey
+
+        }
         
         currentTrip = currentTrip.readTripFromDefaults(key: tripKey)
         //What I want to have happen: If there is no key sent in then just access currentTrip. Whatever is in the view when you exit, that is saved as "currentTrip", if a key is sent in to this view, use that to access the trip instead.
@@ -46,7 +92,7 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
         //add code that presents popup that asks if you want to save this trip, and use current date as key
 
         writeCurrentTrip()
-        currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
+        currentTrip.saveTripToDefaults(key: currentTripKey, trip: currentTrip)
     }
     
     func writeCurrentTrip() {
@@ -68,7 +114,7 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
             currentTrip.waypoints.append(waypoint)
         }
         
-        //currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
+
     }
 
     

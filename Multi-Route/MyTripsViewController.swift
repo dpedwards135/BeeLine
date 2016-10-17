@@ -12,12 +12,41 @@ import UIKit
 
 class MyTripsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // MARK: Properties
+
+    let defaults = UserDefaults.standard
+    var tripIndexArray : [String] = []
+    var selectedTripKey = ""
+    
     
     // Get allTrips data
-    let allTrips = Trip.allTrips
+    var allTrips : [Trip] = []
     
-    // MARK: Table View Data Source
+
+    func getTrips() {
+        
+        tripIndexArray = defaults.value(forKey: "tripIndex") as! [String]
+        for String in tripIndexArray {
+            
+            var savedTrip = Trip(orientation: "", orientationPoint: "", waypoints: [])
+            savedTrip = savedTrip.readTripFromDefaults(key: String)
+            allTrips.append(savedTrip)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Plan Trip Segue") {
+            let planTripViewController : PlanTripViewController = segue.destination as! PlanTripViewController
+            planTripViewController.tripKey = selectedTripKey
+            print(selectedTripKey)
+        
+
+         }
+    }
+    
+    
+    override func viewDidLoad() {
+        getTrips()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.allTrips.count
@@ -46,4 +75,13 @@ class MyTripsViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedTripKey = tripIndexArray[indexPath.row]
+        performSegue(withIdentifier: "Plan Trip Segue", sender: self)
+    }
+    
+    
+    
+
 }

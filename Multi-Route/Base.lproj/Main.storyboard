@@ -201,7 +201,21 @@
                             <outlet property="delegate" destination="uVk-60-2WP" id="gP7-Rt-zMq"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Plan Trip" id="Wy5-dP-hfe">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="xRf-iv-gJe">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VLg-0e-2Cw">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Save Trip"/>
+                                <connections>
+                                    <action selector="saveToMyTrips:" destination="uVk-60-2WP" eventType="touchUpInside" id="bLO-3s-Ye2"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="saveTripButton" destination="VLg-0e-2Cw" id="a82-M8-sCW"/>
                         <outlet property="tableView" destination="I3N-4u-cYN" id="jYM-El-rhO"/>
                     </connections>
                 </viewController>
@@ -266,6 +280,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="uVk-60-2WP" kind="show" identifier="Plan Trip Segue" id="EFK-2q-ImK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CgG-Qs-Ll3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -331,4 +348,7 @@
         <image name="Logo" width="730" height="707"/>
         <image name="Welcome Background" width="414" height="628"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EFK-2q-ImK"/>
+    </inferredMetricsTieBreakers>
 </document>
