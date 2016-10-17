@@ -70,9 +70,18 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
         if tripKey == "" {
             
             tripKey = currentTripKey
+            print("Assigning Current Trip Key")
 
         }
-        
+        if let objectCheck : AnyObject? = defaults.object(forKey: tripKey) as AnyObject??  {
+        } else {
+            print("No Default Current Found")
+            currentTrip.orientation = "Origin"
+            currentTrip.orientationPoint = ""
+            currentTrip.waypoints = [""]
+            tableView.reloadData()
+            currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
+        }
         currentTrip = currentTrip.readTripFromDefaults(key: tripKey)
         //What I want to have happen: If there is no key sent in then just access currentTrip. Whatever is in the view when you exit, that is saved as "currentTrip", if a key is sent in to this view, use that to access the trip instead.
 
