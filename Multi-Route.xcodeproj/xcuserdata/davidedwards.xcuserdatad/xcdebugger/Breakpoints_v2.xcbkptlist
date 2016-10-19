@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PlanTripViewController.swift"
-            timestampString = "498368892.293978"
+            timestampString = "498603348.002186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PlanTripViewController.swift"
-            timestampString = "498366240.455599"
+            timestampString = "498603348.002186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "PlanTripViewController"
             landmarkType = "3">
             <Locations>

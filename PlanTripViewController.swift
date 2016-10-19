@@ -13,6 +13,81 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var saveTripButton: UIButton!
     
+    
+    @IBAction func submitTrip(_ sender: AnyObject) {
+        
+        print("Submitting Trip")
+        
+        
+        let gmURL = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=75+9th+Ave+New+York,+NY&destination=MetLife+Stadium+1+MetLife+Stadium+Dr+East+Rutherford,+NJ+07073&key=AIzaSyAXKUya8igVCUOUAhlOVcatMYzzsM-1pJQ")!
+        
+        let task = URLSession.shared.dataTask(with: gmURL) { (data, response, error) in
+            
+            if error == nil {
+                
+                print("Error: Nil")
+                
+                /* Raw JSON data (...simliar to the format you might receive from the network) */
+                var rawDirectionsJSON = try? Data(contentsOf: gmURL)
+                
+                /* Error object */
+                var parsingDirectionsError: NSError? = nil
+                
+                /* Parse the data into usable form */
+                var parsedDirectionsJSON = try! JSONSerialization.jsonObject(with: rawDirectionsJSON!, options: .allowFragments) as! NSDictionary
+                
+                print(parsedDirectionsJSON)
+                print("Directions Parsed")
+                
+                print(parsedDirectionsJSON.allKeys)
+                //print(parsedDirectionsJSON.value(forKey: "routes"))
+                
+                
+                
+                
+                
+                
+                func parseJSONAsDictionary(_ dictionary: NSDictionary) {
+                    
+                    guard let distanceDictionary = parsedDirectionsJSON["distance"] as? NSDictionary else {
+                        print("Cannot find key 'photos' in \(parsedDirectionsJSON)")
+                        return
+                    }
+                    
+                    guard let numDistances = distanceDictionary["total"] as? Int else {
+                        print("Cannot find key 'total' in \(distanceDictionary)")
+                        return
+                    }
+                    
+                    /* How many photos are in the JSON data set? */
+                    print(numDistances)
+                    
+                    guard let arrayOfPhotoDictionaries = distanceDictionary["distance"] as? [[String:AnyObject]] else {
+                        print("Cannot find key 'distance' in \(distanceDictionary)")
+                        return
+                    }
+                /*
+
+                performUIUpdatesOnMain {
+                    print("Performing on Main")
+                    self.imageView.image = downloadImage
+                }
+ 
+                */
+            
+                
+                parseJSONAsDictionary(parsedDirectionsJSON)
+                
+                }
+        }
+        
+        
+        
+        
+        }
+        task.resume()
+    }
+    
     @IBAction func saveToMyTrips(_ sender: AnyObject) {
         
         writeCurrentTrip()

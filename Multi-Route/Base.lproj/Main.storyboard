@@ -10,7 +10,7 @@
         <scene sceneID="CrA-bP-nOE">
             <objects>
                 <navigationController id="nYJ-xc-YhQ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zZt-tN-gk8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zZt-tN-gk8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -73,7 +73,7 @@
         <!--Menu-->
         <scene sceneID="2jG-Jx-PGK">
             <objects>
-                <viewController title="Menu" id="ZlC-xr-Vpu" sceneMemberID="viewController">
+                <viewController title="Menu" id="ZlC-xr-Vpu" customClass="MenuViewController" customModule="Multi_Route" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="19f-NI-Ytb"/>
                         <viewControllerLayoutGuide type="bottom" id="syx-u9-Rbi"/>
@@ -101,7 +101,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Invite Friends"/>
                                 <connections>
-                                    <segue destination="q5C-KE-yRw" kind="show" id="9dF-5v-U6M"/>
+                                    <action selector="share:" destination="ZlC-xr-Vpu" eventType="touchUpInside" id="TNj-Fm-kAJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vB1-vl-gq8">
@@ -187,9 +187,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNZ-Lr-TDY">
-                                            <frame key="frameInset" minX="164" minY="26" maxX="165" maxY="26"/>
+                                            <frame key="frameInset" minX="321" minY="26" maxX="8" maxY="26"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <state key="normal" title="Add"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ja1-eu-G2b">
+                                            <frame key="frameInset" minX="143" minY="17" width="89" height="48"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <state key="normal" title="Submit"/>
+                                            <connections>
+                                                <action selector="submitTrip:" destination="uVk-60-2WP" eventType="touchUpInside" id="Sql-Bp-0OW"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -205,7 +214,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Plan Trip" id="Wy5-dP-hfe">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="xRf-iv-gJe">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VLg-0e-2Cw">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VLg-0e-2Cw">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -293,7 +302,7 @@
         <!--Invite Friends-->
         <scene sceneID="n6Q-oJ-xJx">
             <objects>
-                <viewController title="Invite Friends" id="q5C-KE-yRw" userLabel="Invite Friends" sceneMemberID="viewController">
+                <viewController title="Invite Friends" id="q5C-KE-yRw" userLabel="Invite Friends" customClass="InviteFriendsVCViewController" customModule="Multi_Route" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="muf-Lc-BbL"/>
                         <viewControllerLayoutGuide type="bottom" id="Egh-4T-wqw"/>
@@ -309,18 +318,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yn-Ua-JTn">
+                                <frame key="frameInset" minX="61" minY="178" width="253" height="124"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="Send Text Message"/>
+                                <connections>
+                                    <action selector="invite:" destination="q5C-KE-yRw" eventType="touchUpInside" id="Yck-Er-hUa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L26-Pp-jbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="875"/>
+            <point key="canvasLocation" x="285.60000000000002" y="874.81259370314854"/>
         </scene>
         <!--Current Trip-->
         <scene sceneID="a7q-Y8-GiX">
             <objects>
-                <viewController title="Current Trip" id="UNO-0B-UwC" userLabel="Current Trip" sceneMemberID="viewController">
+                <viewController title="Current Trip" id="UNO-0B-UwC" userLabel="Current Trip" customClass="CurrentTripViewController" customModule="Multi_Route" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zuu-Lf-Jez"/>
                         <viewControllerLayoutGuide type="bottom" id="gX2-yc-JEd"/>
@@ -350,6 +368,6 @@
         <image name="Welcome Background" width="414" height="628"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EFK-2q-ImK"/>
+        <segue reference="XD6-r8-bBM"/>
     </inferredMetricsTieBreakers>
 </document>
