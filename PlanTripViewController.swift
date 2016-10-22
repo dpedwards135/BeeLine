@@ -6,10 +6,13 @@
 //  Copyright © 2016 David Edwards. All rights reserved.
 //
 import UIKit
+import Gloss
 
 // MARK: - ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 
 class PlanTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var directionsMileage : Double = 0
     
     @IBOutlet weak var saveTripButton: UIButton!
     
@@ -17,9 +20,23 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBAction func submitTrip(_ sender: AnyObject) {
         
         print("Submitting Trip")
+        writeCurrentTrip()
+        saveTrip()
         
         
-        let gmURL = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=75+9th+Ave+New+York,+NY&destination=MetLife+Stadium+1+MetLife+Stadium+Dr+East+Rutherford,+NJ+07073&key=AIzaSyAXKUya8igVCUOUAhlOVcatMYzzsM-1pJQ")!
+        /*
+        var urlString = "https://maps.googleapis.com/maps/api/directions/json?origin=Boston,MA&destination=Concord,MA&waypoints=Charlestown,MA|Lexington,MA&key=AIzaSyAXKUya8igVCUOUAhlOVcatMYzzsM-1pJQ"
+        
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+
+        
+        print(urlString)
+        
+            */
+ 
+        let gmURL = buildGMUrl()
+        
+        print(gmURL)
         
         let task = URLSession.shared.dataTask(with: gmURL) { (data, response, error) in
             
@@ -39,54 +56,53 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
                 print(parsedDirectionsJSON)
                 print("Directions Parsed")
                 
-                print(parsedDirectionsJSON.allKeys)
-                //print(parsedDirectionsJSON.value(forKey: "routes"))
-                
-                
-                
-                
-                
-                
-                func parseJSONAsDictionary(_ dictionary: NSDictionary) {
-                    
-                    guard let distanceDictionary = parsedDirectionsJSON["distance"] as? NSDictionary else {
-                        print("Cannot find key 'photos' in \(parsedDirectionsJSON)")
-                        return
-                    }
-                    
-                    guard let numDistances = distanceDictionary["total"] as? Int else {
-                        print("Cannot find key 'total' in \(distanceDictionary)")
-                        return
-                    }
-                    
-                    /* How many photos are in the JSON data set? */
-                    print(numDistances)
-                    
-                    guard let arrayOfPhotoDictionaries = distanceDictionary["distance"] as? [[String:AnyObject]] else {
-                        print("Cannot find key 'distance' in \(distanceDictionary)")
-                        return
-                    }
-                /*
-
-                performUIUpdatesOnMain {
-                    print("Performing on Main")
-                    self.imageView.image = downloadImage
+                guard let directions = Directions(json: parsedDirectionsJSON as! JSON) else {
+                    print ("unable to parse")
+                    return
                 }
- 
-                */
+                
+                print(directions.status)
+                
+                var totalDistance = 0
+                var legs : [Leg]
+                legs = (directions.routes[0].legs)
+                print(legs.count)
+                for item in legs{
+                    
+                    var distance = item.distance
+                    var value = distance.value
+                    
+                    totalDistance = totalDistance + value
+                    
+                    //Why does it think there is only one leg?
+                    
+                }
+                
+                self.directionsMileage = Double(totalDistance) * 0.000621371
+                
+                //print(directions.routes[0].legs[0].distance.value)
+                print(self.directionsMileage)
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "Current Trip Segue", sender: self)
+                }
+                
+                return
+            }
             
-                
-                parseJSONAsDictionary(parsedDirectionsJSON)
-                
-                }
-        }
-        
-        
-        
-        
+            
+            
         }
         task.resume()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Current Trip Segue") {
+            let currentTripViewController : CurrentTripVC = segue.destination as! CurrentTripVC
+            currentTripViewController.predictedMileage = directionsMileage
+            print("Preparing for Segue")
+        }
+    }
+
     
     @IBAction func saveToMyTrips(_ sender: AnyObject) {
         
@@ -295,5 +311,25 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.reloadData()
     }
     
-    
+    func buildGMUrl() -> URL{
+        let baseURL : String = "https://maps.googleapis.com/maps/api/directions/json?"
+        let orientationString = currentTrip.orientation.lowercased() + "=" + currentTrip.orientationPoint + ",&"
+        var waypointsString = "waypoints=optimize:true"
+        for waypoint in currentTrip.waypoints {
+            waypointsString.append("|\(waypoint)")
+        }
+        let destinationString = "&destination=" + currentTrip.orientationPoint
+        let keyString = "&key=AIzaSyAXKUya8igVCUOUAhlOVcatMYzzsM-1pJQ"
+        
+        var urlString = baseURL + orientationString + waypointsString + destinationString + keyString
+        
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+        
+        print(urlString)
+        
+        let gmURL = URL(string: urlString)
+        
+        
+        return gmURL!
+    }
 }

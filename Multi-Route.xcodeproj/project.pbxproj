@@ -13,10 +13,14 @@
 		3C44664E1DA3BC86006EA4B7 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C44664D1DA3BC86006EA4B7 /* TestViewController.swift */; };
 		3C4466521DA456D8006EA4B7 /* PlanTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4466511DA456D8006EA4B7 /* PlanTripViewController.swift */; };
 		3C4466541DA4580A006EA4B7 /* Trips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4466531DA4580A006EA4B7 /* Trips.swift */; };
-		3C8F27D01DB7CEC800BAEEA6 /* CurrentTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27CF1DB7CEC800BAEEA6 /* CurrentTripViewController.swift */; };
 		3C8F27D21DB7D8AB00BAEEA6 /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27D11DB7D8AB00BAEEA6 /* MapTasks.swift */; };
 		3C8F27D41DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27D31DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift */; };
 		3C8F27D61DB8185100BAEEA6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27D51DB8185100BAEEA6 /* MenuViewController.swift */; };
+		3C8F27E01DBAACAD00BAEEA6 /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27DF1DBAACAD00BAEEA6 /* Directions.swift */; };
+		3C8F27E21DBAB55300BAEEA6 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27E11DBAB55300BAEEA6 /* Route.swift */; };
+		3C8F27E41DBAB6C100BAEEA6 /* Leg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27E31DBAB6C100BAEEA6 /* Leg.swift */; };
+		3C8F27E61DBAB74000BAEEA6 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27E51DBAB74000BAEEA6 /* Distance.swift */; };
+		3C8F27EA1DBBB0D400BAEEA6 /* CurrentTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27E91DBBB0D400BAEEA6 /* CurrentTripVC.swift */; };
 		3CFC7C191DA04A5D00B3292F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC7C181DA04A5D00B3292F /* AppDelegate.swift */; };
 		3CFC7C1B1DA04A5D00B3292F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */; };
 		3CFC7C1E1DA04A5D00B3292F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CFC7C1C1DA04A5D00B3292F /* Main.storyboard */; };
@@ -24,7 +28,7 @@
 		3CFC7C231DA04A5D00B3292F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CFC7C211DA04A5D00B3292F /* LaunchScreen.storyboard */; };
 		3CFC7C2E1DA04A5E00B3292F /* Multi_RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC7C2D1DA04A5E00B3292F /* Multi_RouteTests.swift */; };
 		3CFC7C391DA04A5E00B3292F /* Multi_RouteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC7C381DA04A5E00B3292F /* Multi_RouteUITests.swift */; };
-		DEE21A25C0F88FB21B2214C8 /* libPods-Multi-Route.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0C0839ABCD6669EBEF76E5 /* libPods-Multi-Route.a */; };
+		A5AB57C9270855792856A194 /* Pods_Multi_Route.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501596893E1344613460B9A6 /* Pods_Multi_Route.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,10 +56,14 @@
 		3C44664D1DA3BC86006EA4B7 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = ../TestViewController.swift; sourceTree = "<group>"; };
 		3C4466511DA456D8006EA4B7 /* PlanTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlanTripViewController.swift; path = ../PlanTripViewController.swift; sourceTree = "<group>"; };
 		3C4466531DA4580A006EA4B7 /* Trips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trips.swift; sourceTree = "<group>"; };
-		3C8F27CF1DB7CEC800BAEEA6 /* CurrentTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentTripViewController.swift; sourceTree = "<group>"; };
 		3C8F27D11DB7D8AB00BAEEA6 /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTasks.swift; sourceTree = "<group>"; };
 		3C8F27D31DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsVCViewController.swift; sourceTree = "<group>"; };
 		3C8F27D51DB8185100BAEEA6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		3C8F27DF1DBAACAD00BAEEA6 /* Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
+		3C8F27E11DBAB55300BAEEA6 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		3C8F27E31DBAB6C100BAEEA6 /* Leg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leg.swift; sourceTree = "<group>"; };
+		3C8F27E51DBAB74000BAEEA6 /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
+		3C8F27E91DBBB0D400BAEEA6 /* CurrentTripVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentTripVC.swift; sourceTree = "<group>"; };
 		3CFC7C151DA04A5D00B3292F /* Multi-Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Multi-Route.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFC7C181DA04A5D00B3292F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,7 +77,7 @@
 		3CFC7C341DA04A5E00B3292F /* Multi-RouteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Multi-RouteUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFC7C381DA04A5E00B3292F /* Multi_RouteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multi_RouteUITests.swift; sourceTree = "<group>"; };
 		3CFC7C3A1DA04A5E00B3292F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DB0C0839ABCD6669EBEF76E5 /* libPods-Multi-Route.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Multi-Route.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		501596893E1344613460B9A6 /* Pods_Multi_Route.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Multi_Route.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4C19CF047C0E1BA13269A4 /* Pods-Multi-Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multi-Route.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Multi-Route/Pods-Multi-Route.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEE21A25C0F88FB21B2214C8 /* libPods-Multi-Route.a in Frameworks */,
+				A5AB57C9270855792856A194 /* Pods_Multi_Route.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,12 +151,16 @@
 				3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */,
 				3CFC7C1C1DA04A5D00B3292F /* Main.storyboard */,
 				3C8F27D31DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift */,
-				3C8F27CF1DB7CEC800BAEEA6 /* CurrentTripViewController.swift */,
 				3C8F27D11DB7D8AB00BAEEA6 /* MapTasks.swift */,
 				3C1B4CD71DB412CC00BA9979 /* AddButtonCell.swift */,
 				3CFC7C1F1DA04A5D00B3292F /* Assets.xcassets */,
 				3CFC7C211DA04A5D00B3292F /* LaunchScreen.storyboard */,
 				3CFC7C241DA04A5D00B3292F /* Info.plist */,
+				3C8F27DF1DBAACAD00BAEEA6 /* Directions.swift */,
+				3C8F27E11DBAB55300BAEEA6 /* Route.swift */,
+				3C8F27E31DBAB6C100BAEEA6 /* Leg.swift */,
+				3C8F27E51DBAB74000BAEEA6 /* Distance.swift */,
+				3C8F27E91DBBB0D400BAEEA6 /* CurrentTripVC.swift */,
 			);
 			path = "Multi-Route";
 			sourceTree = "<group>";
@@ -174,7 +186,7 @@
 		A20FAC0C1BD2ED0C3BE4D576 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DB0C0839ABCD6669EBEF76E5 /* libPods-Multi-Route.a */,
+				501596893E1344613460B9A6 /* Pods_Multi_Route.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -364,16 +376,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C8F27D01DB7CEC800BAEEA6 /* CurrentTripViewController.swift in Sources */,
 				3C8F27D21DB7D8AB00BAEEA6 /* MapTasks.swift in Sources */,
 				3C4466541DA4580A006EA4B7 /* Trips.swift in Sources */,
+				3C8F27E41DBAB6C100BAEEA6 /* Leg.swift in Sources */,
+				3C8F27E61DBAB74000BAEEA6 /* Distance.swift in Sources */,
 				3C8F27D41DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift in Sources */,
 				3C0C9D871DA8096E00667282 /* PlanTripCellTableViewCell.swift in Sources */,
+				3C8F27E21DBAB55300BAEEA6 /* Route.swift in Sources */,
 				3C0C9D851DA8000600667282 /* MyTripsViewController.swift in Sources */,
 				3C1B4CD81DB412CC00BA9979 /* AddButtonCell.swift in Sources */,
+				3C8F27EA1DBBB0D400BAEEA6 /* CurrentTripVC.swift in Sources */,
 				3C8F27D61DB8185100BAEEA6 /* MenuViewController.swift in Sources */,
 				3C4466521DA456D8006EA4B7 /* PlanTripViewController.swift in Sources */,
 				3CFC7C1B1DA04A5D00B3292F /* ViewController.swift in Sources */,
+				3C8F27E01DBAACAD00BAEEA6 /* Directions.swift in Sources */,
 				3C44664E1DA3BC86006EA4B7 /* TestViewController.swift in Sources */,
 				3CFC7C191DA04A5D00B3292F /* AppDelegate.swift in Sources */,
 			);

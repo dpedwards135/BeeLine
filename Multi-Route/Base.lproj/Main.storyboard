@@ -92,7 +92,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Return to Trip"/>
                                 <connections>
-                                    <segue destination="UNO-0B-UwC" kind="show" id="MLQ-qb-eGZ"/>
+                                    <segue destination="Bgu-T8-2ns" kind="show" identifier="Current Trip Segue" id="72Q-ev-Z04"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nR5-ZA-yOb">
@@ -228,11 +228,12 @@
                     <connections>
                         <outlet property="saveTripButton" destination="VLg-0e-2Cw" id="a82-M8-sCW"/>
                         <outlet property="tableView" destination="I3N-4u-cYN" id="jYM-El-rhO"/>
+                        <segue destination="Bgu-T8-2ns" kind="show" identifier="Current Trip Segue" id="DUn-Lf-wGi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fh-Ac-cx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="317.60000000000002" y="-13.043478260869566"/>
+            <point key="canvasLocation" x="454" y="-147"/>
         </scene>
         <!--Saved Trips-->
         <scene sceneID="3Ln-6e-8YX">
@@ -335,32 +336,35 @@
             </objects>
             <point key="canvasLocation" x="285.60000000000002" y="874.81259370314854"/>
         </scene>
-        <!--Current Trip-->
-        <scene sceneID="a7q-Y8-GiX">
+        <!--Current TripVC-->
+        <scene sceneID="SgZ-BS-UGf">
             <objects>
-                <viewController title="Current Trip" id="UNO-0B-UwC" userLabel="Current Trip" customClass="CurrentTripViewController" customModule="Multi_Route" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Bgu-T8-2ns" customClass="CurrentTripVC" customModule="Multi_Route" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Zuu-Lf-Jez"/>
-                        <viewControllerLayoutGuide type="bottom" id="gX2-yc-JEd"/>
+                        <viewControllerLayoutGuide type="top" id="Wbb-9J-MDt"/>
+                        <viewControllerLayoutGuide type="bottom" id="4LP-zH-jtI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IsV-z6-epQ">
+                    <view key="view" contentMode="scaleToFill" id="wsl-9R-fbV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Map goes here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTN-NB-puj">
-                                <frame key="frameInset" minX="37" minY="376" width="341" height="88"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uc-Mw-JDU">
+                                <frame key="frameInset" minX="54" minY="231" width="279" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="mileageLabel" destination="6uc-Mw-JDU" id="IMR-PB-5nt"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AY7-BK-CRH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bbk-vu-ib4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1052" y="429"/>
+            <point key="canvasLocation" x="1125.5999999999999" y="497.90104947526243"/>
         </scene>
     </scenes>
     <resources>
@@ -369,5 +373,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XD6-r8-bBM"/>
+        <segue reference="DUn-Lf-wGi"/>
     </inferredMetricsTieBreakers>
 </document>
