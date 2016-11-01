@@ -10,14 +10,14 @@ import Gloss
 
 struct Directions: Decodable {
     
-    //let geocodedWaypoints: String
+    let geocodedWaypoints: [GeocodedWaypoint]
     let routes: [Route]
     let status: String
     
     // MARK: - Deserialization
     
     init?(json: JSON) {
-        //self.geocodedWaypoints = ("geocoded_waypoints" <~~ json)!
+        self.geocodedWaypoints = ("geocoded_waypoints" <~~ json)!
         self.routes = ("routes" <~~ json)!
         self.status = ("status" <~~ json)!
         

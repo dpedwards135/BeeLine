@@ -17,7 +17,7 @@ import UIKit
  *
  */
 
-struct Trip {
+class Trip {
     
     // MARK: Properties
     
@@ -38,39 +38,9 @@ struct Trip {
         self.orientationPoint = orientationPoint
         self.waypoints = waypoints
     }
-        
-}
-
-
-// MARK: - Trip (All Trips)
-
-/**
- * This extension adds static variable allVillains. An array of Villain objects
- */
-
-extension Trip {
     
-    // Generate an array full of all of the trips in
-    static var allTrips: [Trip] {
-        
-        var tripArray = [Trip]()
-        
-        let trip1 = Trip(orientation: "origin", orientationPoint: "New York City", waypoints: ["Salt Lake City", "Pocatello", "New Orleans"])
-        let trip2 = Trip(orientation: "destination", orientationPoint: "Los Angeles", waypoints: ["San Diego", "San Bernadino", "San Francisco"])
-        
-        
-        tripArray.append(trip1)
-        tripArray.append(trip2)
-        
-        /*
-        for d in Trip.localTripData() {
-            tripArray.append(Trip(dictionary: d))
-        }
-        */
-        
-        return tripArray
-    }
-    
+
+
     static var currentTrip: Trip! {
         let thisTrip = Trip(orientation: "origin", orientationPoint: "Richmond, VA", waypoints: ["Farmville, VA", "Lynchburg, VA", "Charlotte, NC"])
         return thisTrip

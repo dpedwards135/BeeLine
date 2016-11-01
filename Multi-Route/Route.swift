@@ -13,10 +13,12 @@ struct Route: Decodable {
 
         
     let legs: [Leg]
+    let waypointOrder : [Int]
         
     
     init?(json: JSON) {
             legs = ("legs" <~~ json)!
+            waypointOrder = ("waypoint_order" <~~ json)!
         }
     
 
