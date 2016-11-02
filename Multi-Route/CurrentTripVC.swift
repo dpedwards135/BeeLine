@@ -51,7 +51,7 @@ class CurrentTripVC: UIViewController {
 
 
         self.view.bringSubview(toFront: mileageLabel)
-        mileageLabel.text = "Miles: " + "\(analyzedTrip!.directionsMileage)"
+        mileageLabel.text = "Miles: " + "\(Double(round(analyzedTrip!.directionsMileage * 10)/10))"
     }
 
     override func didReceiveMemoryWarning() {
