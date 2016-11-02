@@ -22,8 +22,10 @@
 		3C8F27E61DBAB74000BAEEA6 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27E51DBAB74000BAEEA6 /* Distance.swift */; };
 		3C8F27EA1DBBB0D400BAEEA6 /* CurrentTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27E91DBBB0D400BAEEA6 /* CurrentTripVC.swift */; };
 		3CD828CF1DC91DCE00C9262A /* AnalyzedTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD828CE1DC91DCE00C9262A /* AnalyzedTrip.swift */; };
-		3CD828D11DC9264C00C9262A /* WaypointDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD828D01DC9264C00C9262A /* WaypointDetail.swift */; };
+		3CD828D11DC9264C00C9262A /* StopDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD828D01DC9264C00C9262A /* StopDetail.swift */; };
 		3CD828D31DC92B5C00C9262A /* GeocodedWaypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD828D21DC92B5C00C9262A /* GeocodedWaypoint.swift */; };
+		3CDB40D71DC9499D00E22FDD /* StartLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDB40D61DC9499D00E22FDD /* StartLocation.swift */; };
+		3CDB40D91DCA4C0400E22FDD /* EndLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDB40D81DCA4C0400E22FDD /* EndLocation.swift */; };
 		3CFC7C191DA04A5D00B3292F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC7C181DA04A5D00B3292F /* AppDelegate.swift */; };
 		3CFC7C1B1DA04A5D00B3292F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */; };
 		3CFC7C1E1DA04A5D00B3292F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CFC7C1C1DA04A5D00B3292F /* Main.storyboard */; };
@@ -71,8 +73,10 @@
 		3C8F27E51DBAB74000BAEEA6 /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
 		3C8F27E91DBBB0D400BAEEA6 /* CurrentTripVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentTripVC.swift; sourceTree = "<group>"; };
 		3CD828CE1DC91DCE00C9262A /* AnalyzedTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzedTrip.swift; sourceTree = "<group>"; };
-		3CD828D01DC9264C00C9262A /* WaypointDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointDetail.swift; sourceTree = "<group>"; };
+		3CD828D01DC9264C00C9262A /* StopDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
 		3CD828D21DC92B5C00C9262A /* GeocodedWaypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeocodedWaypoint.swift; sourceTree = "<group>"; };
+		3CDB40D61DC9499D00E22FDD /* StartLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartLocation.swift; sourceTree = "<group>"; };
+		3CDB40D81DCA4C0400E22FDD /* EndLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndLocation.swift; sourceTree = "<group>"; };
 		3CFC7C151DA04A5D00B3292F /* Multi-Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Multi-Route.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFC7C181DA04A5D00B3292F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -177,8 +181,10 @@
 				3CFE7AEC1DBD93580086B6B1 /* Element.swift */,
 				3CFE7AEE1DBD942C0086B6B1 /* Row.swift */,
 				3CD828CE1DC91DCE00C9262A /* AnalyzedTrip.swift */,
-				3CD828D01DC9264C00C9262A /* WaypointDetail.swift */,
+				3CD828D01DC9264C00C9262A /* StopDetail.swift */,
 				3CD828D21DC92B5C00C9262A /* GeocodedWaypoint.swift */,
+				3CDB40D61DC9499D00E22FDD /* StartLocation.swift */,
+				3CDB40D81DCA4C0400E22FDD /* EndLocation.swift */,
 			);
 			path = "Multi-Route";
 			sourceTree = "<group>";
@@ -409,10 +415,12 @@
 				3C8F27EA1DBBB0D400BAEEA6 /* CurrentTripVC.swift in Sources */,
 				3C8F27D61DB8185100BAEEA6 /* MenuViewController.swift in Sources */,
 				3C4466521DA456D8006EA4B7 /* PlanTripViewController.swift in Sources */,
-				3CD828D11DC9264C00C9262A /* WaypointDetail.swift in Sources */,
+				3CD828D11DC9264C00C9262A /* StopDetail.swift in Sources */,
+				3CDB40D71DC9499D00E22FDD /* StartLocation.swift in Sources */,
 				3CD828D31DC92B5C00C9262A /* GeocodedWaypoint.swift in Sources */,
 				3CFC7C1B1DA04A5D00B3292F /* ViewController.swift in Sources */,
 				3C8F27E01DBAACAD00BAEEA6 /* Directions.swift in Sources */,
+				3CDB40D91DCA4C0400E22FDD /* EndLocation.swift in Sources */,
 				3C44664E1DA3BC86006EA4B7 /* TestViewController.swift in Sources */,
 				3CFE7AEF1DBD942C0086B6B1 /* Row.swift in Sources */,
 				3CFC7C191DA04A5D00B3292F /* AppDelegate.swift in Sources */,

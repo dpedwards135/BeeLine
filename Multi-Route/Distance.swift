@@ -12,6 +12,7 @@ struct Distance: Decodable {
     
     
     let value: Int
+
     
     init?(json: JSON) {
         value = ("value" <~~ json)!

@@ -12,6 +12,8 @@ struct StopDetail {
 
     let stopName : String
     let stopGeolocation : String
+    var stopLat : Double
+    var stopLong : Double
     
     
 }

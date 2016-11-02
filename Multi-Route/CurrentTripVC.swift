@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import MapKit
 
 class CurrentTripVC: UIViewController {
     
@@ -20,22 +21,32 @@ class CurrentTripVC: UIViewController {
         
         
         
-        let camera = GMSCameraPosition()
+        let camera = GMSCameraPosition.camera(withLatitude: analyzedTrip!.stopDetails[0].stopLat, longitude: analyzedTrip!.stopDetails[0].stopLong, zoom: 6)
+        
+        let frame = CGRect(x: 0, y: 0, width: 100.0, height: 100.0)
         
         //GMSCameraPosition.camera(withLatitude: -33.868,
                        //                                   longitude:151.2086, zoom:6)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera:camera)
+        let mapView = GMSMapView.map(withFrame: frame, camera:camera)
         
-        let marker = GMSMarker()
-        marker.position = camera.target
-        marker.snippet = "Hello World"
-        marker.appearAnimation = kGMSMarkerAnimationPop
-        marker.map = mapView
+        for stopDetail in (analyzedTrip?.stopDetails)! {
         
-        self.view = mapView
+            let marker = GMSMarker()
+        
+            marker.position = CLLocationCoordinate2DMake(stopDetail.stopLat, stopDetail.stopLong)
+            //marker.icon = UIImage(named: <#T##String#>)
+            marker.snippet = "Hello World"
+            marker.appearAnimation = kGMSMarkerAnimationPop
+            marker.map = mapView
+          
+        }
+        
+        self.view.insertSubview(mapView, at: 0)
+        
+        //goToNavigation(lat: 25.76, long: -80.19)
 
 
-        
+        self.view.bringSubview(toFront: mileageLabel)
         mileageLabel.text = "Miles: " + "\(analyzedTrip!.directionsMileage)"
     }
 
@@ -44,6 +55,17 @@ class CurrentTripVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func goToNavigation(lat : Double, long : Double) {
+    
+        let coordinate = CLLocationCoordinate2DMake(lat,long)
+    
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+    
+        mapItem.name = "Target location"
+    
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+    }
 
     /*
      

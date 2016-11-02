@@ -54,11 +54,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Multi-Route/Leg.swift"
-            timestampString = "498830329.765664"
+            timestampString = "499797314.446223"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "init(json:)"
             landmarkType = "7">
          </BreakpointContent>

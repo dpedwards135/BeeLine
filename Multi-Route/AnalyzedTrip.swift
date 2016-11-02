@@ -227,15 +227,36 @@ class AnalyzedTrip {
                 for geocodedWaypoint in directions.geocodedWaypoints {
                     geocodeArray.append(geocodedWaypoint.placeID)
                 }
-                var originDetail = StopDetail(stopName: self.origin, stopGeolocation: geocodeArray[0])
+                var originDetail = StopDetail(stopName: self.origin, stopGeolocation: geocodeArray[0], stopLat : 0, stopLong : 0)
                 self.stopDetails.append(originDetail)
                 for waypoint in self.waypointOrder {
-                    var waypointDetail = StopDetail(stopName: self.currentTrip.waypoints[waypoint], stopGeolocation: geocodeArray[waypoint+1])
+                    var waypointDetail = StopDetail(stopName: self.currentTrip.waypoints[waypoint], stopGeolocation: geocodeArray[waypoint+1], stopLat : 0, stopLong : 0)
                     self.stopDetails.append(waypointDetail)
                 }
-                var destinationDetail = StopDetail(stopName: self.destination, stopGeolocation: geocodeArray.last!)
+                var destinationDetail = StopDetail(stopName: self.destination, stopGeolocation: geocodeArray.last!, stopLat : 0, stopLong : 0)
                 self.stopDetails.append(destinationDetail)
                 
+                
+                // Need to fix this so that it pulls the end coordinates off the last one, 1 less leg than stops
+                
+
+                self.stopDetails[0].stopLat = directions.routes[0].legs[0].startLocation.startLat
+                self.stopDetails[0].stopLong = directions.routes[0].legs[0].startLocation.startLong
+
+                var legCounter = 0
+                for leg in directions.routes[0].legs {
+                    
+                        self.stopDetails[legCounter + 1].stopLat = directions.routes[0].legs[legCounter].endLocation.endLat
+                    
+                        self.stopDetails[legCounter + 1].stopLong = directions.routes[0].legs[legCounter].endLocation.endLong
+                    
+                        print(self.stopDetails[legCounter + 1].stopLat)
+                    
+                        legCounter += 1
+                        
+                 
+                    
+                }
                 
                 
                 print(self.waypointOrder)
