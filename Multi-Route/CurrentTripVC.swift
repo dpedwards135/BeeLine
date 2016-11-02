@@ -15,6 +15,7 @@ class CurrentTripVC: UIViewController {
 
     var analyzedTrip : AnalyzedTrip?
 
+    @IBOutlet weak var mapViewFrame: UIView!
     @IBOutlet weak var mileageLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +24,14 @@ class CurrentTripVC: UIViewController {
         
         let camera = GMSCameraPosition.camera(withLatitude: analyzedTrip!.stopDetails[0].stopLat, longitude: analyzedTrip!.stopDetails[0].stopLong, zoom: 6)
         
-        let frame = CGRect(x: 0, y: 0, width: 100.0, height: 100.0)
+        let frame = self.view.bounds.size
+        
+            
+            //CGRect(x: 0, y: 0, width: 100.0, height: 500.0)
         
         //GMSCameraPosition.camera(withLatitude: -33.868,
                        //                                   longitude:151.2086, zoom:6)
-        let mapView = GMSMapView.map(withFrame: frame, camera:camera)
+        let mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height), camera:camera)
         
         for stopDetail in (analyzedTrip?.stopDetails)! {
         
@@ -40,8 +44,8 @@ class CurrentTripVC: UIViewController {
             marker.map = mapView
           
         }
-        
-        self.view.insertSubview(mapView, at: 0)
+        self.view.addSubview(mapView)
+        //self.view.insertSubview(mapView, at: 0)
         
         //goToNavigation(lat: 25.76, long: -80.19)
 
