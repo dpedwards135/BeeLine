@@ -118,11 +118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Multi-Route/CurrentTripVC.swift"
-            timestampString = "499893915.480342"
+            timestampString = "499897939.82452"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "CurrentTripVC"
             landmarkType = "3">
             <Locations>

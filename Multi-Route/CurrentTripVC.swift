@@ -10,22 +10,52 @@ import UIKit
 import GoogleMaps
 import MapKit
 
-class CurrentTripVC: UIViewController, GMSMapViewDelegate {
+class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
 
     var analyzedTrip : AnalyzedTrip?
     var selectedStop : Int = 0
+    var pickerView : UIPickerView?
+    var toolBar : UIToolbar?
     
+    @IBOutlet weak var nearbyServicesInput: UITextField!
     @IBOutlet weak var navigationButton: UIButton!
     @IBOutlet weak var optionView: UIView!
     
     @IBOutlet weak var stopNameLabel: UILabel!
 
     @IBOutlet weak var mileageLabel: UILabel!
+    
+    var services = ["Select Service","Hotel", "Food", "Coffee", "Gas"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Configure nearbyServicesInput
         
+        pickerView = UIPickerView()
+        pickerView?.delegate = self
+        self.nearbyServicesInput.delegate = self
+        
+        
+        toolBar = UIToolbar()
+        
+        toolBar?.barStyle = UIBarStyle.default
+        toolBar?.isTranslucent = true
+        toolBar?.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar?.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: Selector("donePicker"))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: Selector("cancelPicker"))
+        
+        toolBar?.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar?.isUserInteractionEnabled = true
+        
+        nearbyServicesInput.inputView = pickerView
+        nearbyServicesInput.inputAccessoryView = toolBar
+        
+
         
         let camera = GMSCameraPosition.camera(withLatitude: analyzedTrip!.stopDetails[0].stopLat, longitude: analyzedTrip!.stopDetails[0].stopLong, zoom: 6)
         
@@ -45,6 +75,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate {
             stopDetailCounter += 1
             let marker = GMSMarker()
             marker.title = "\(stopDetailCounter)"
+            marker.snippet = "Test Snippet"
         
             marker.position = CLLocationCoordinate2DMake(stopDetail.stopLat, stopDetail.stopLong)
         
@@ -175,5 +206,45 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //PickerView Configuration
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return services.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return services[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        nearbyServicesInput.text = services[row]
+        //pickerView.removeFromSuperview()
+        
+        //Launch service request
+        
+    }
+    
+    func donePicker() {
+    
+        self.view.endEditing(true)
+        print("DonePicker")
+        
+        //Get service name from text input
+        //Query places API for types of that service
+        //Display new markers on map
+        
+    }
+    
+    func cancelPicker() {
+        self.view.endEditing(true)
+        print("CancelPicker")
+    }
+    
+
 
 }
