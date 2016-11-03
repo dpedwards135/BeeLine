@@ -120,6 +120,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
         */
         self.view.bringSubview(toFront: mileageLabel)
         self.view.bringSubview(toFront: optionView)
+        
         mileageLabel.text = "Miles: " + "\(Double(round(analyzedTrip!.directionsMileage * 10)/10))"
         navigationButton.isEnabled = false
     }
@@ -132,9 +133,10 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         print("Marker Tapped \(marker.title!)")
         self.selectedStop = Int(marker.title!)!
-        stopNameLabel.text = "Stop \(marker.title!)"
+        stopNameLabel.text = "\(marker.title!): \(analyzedTrip!.stopDetails[selectedStop-1].stopName)"
         navigationButton.setTitle("Navigation", for: UIControlState.normal)
         navigationButton.isEnabled = true
+        
         
         return true
     }
@@ -153,13 +155,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
         //GoToNavigation
         goToNavigation(lat: lat!, long: long!)
     }
-    func openOptions() {
-        
-    }
-    
-    func closeOptions() {
-        
-    }
+
     
     
     func goToNavigation(lat : Double, long : Double) {
@@ -173,39 +169,6 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
 
-    /*
-     
-     import UIKit
-     import GoogleMaps
-     
-     class DemoViewController: UIViewController {
-     
-     override func viewDidLoad() {
-     super.viewDidLoad()
-     let camera = GMSCameraPosition.cameraWithLatitude(-33.868,
-     longitude:151.2086, zoom:6)
-     let mapView = GMSMapView.mapWithFrame(CGRectZero, camera:camera)
-     
-     let marker = GMSMarker()
-     marker.position = camera.target
-     marker.snippet = "Hello World"
-     marker.appearAnimation = kGMSMarkerAnimationPop
-     marker.map = mapView
-     
-     self.view = mapView
-     }
-     
-     
-     
-     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     //PickerView Configuration
     
@@ -246,5 +209,115 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     }
     
 
+    func getServices() {
+        let lat = analyzedTrip?.stopDetails[selectedStop-1].stopLat
+        let long = analyzedTrip?.stopDetails[selectedStop-1].stopLong
+        let type = "restaurant"
+        let radius = 500
+        //let keyword =
+        
+        
+        //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyAXKUya8igVCUOUAhlOVcatMYzzsM-1pJQ
+        /* 
+         Query API for list of services near selectedStop
+         Add list to array
+         Create markers for all services
+         Display markers
+         On Tap Pop-Up displays service info? Or just keep it all in the main bar? More button? Let's just keep it all in the same bar for now.
+         
+         */
+
+        
+        
+        let baseURLString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+        var locationString = "location=\(lat),\(long)"
+        var typeString = "&type=" + type
+        //var keywordString = "&keyword" + keyword
+        
+        var radiusString = "&radius=\(radius)"
+        var keyString = "&keyword=cruise&key=AIzaSyAXKUya8igVCUOUAhlOVcatMYzzsM-1pJQ"
+        
+        var finalString = baseURLString + locationString + typeString + /*keywordString + */ radiusString + keyString
+        
+        
+        finalString = finalString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+        
+        var placeURL = URL(string: finalString)
+        
+        
+        
+        print(placeURL)
+        
+        let task = URLSession.shared.dataTask(with: placeURL!) { (data, response, error) in
+            
+            if error == nil {
+                
+                print("Error: Nil")
+                
+                /* Raw JSON data (...simliar to the format you might receive from the network) */
+                var rawPlaceJSON = try? Data(contentsOf: placeURL!)
+                
+                /* Error object */
+                var parsingPlaceError: NSError? = nil
+                
+                /* Parse the data into usable form */
+                var parsedPlaceJSON = try! JSONSerialization.jsonObject(with: rawPlaceJSON!, options: .allowFragments) as! NSDictionary
+                
+                print(parsedPlaceJSON)
+                print("Directions Parsed")
+                
+                /*
+                guard let distance = NearbyPlaces(json: parsedPlaceJSON as! JSON) else {
+                    print ("unable to parse")
+                    return
+                }
+                
+                print(distance.rows[0].elements[0].distance.value)
+                
+                var distanceArray : [Int] = []
+                
+                for element in distance.rows[0].elements {
+                    //Pair the distance to it's waypoint and identify the largest
+                    distanceArray.append(element.distance.value)
+                }
+                
+                let distanceArrayMax = distanceArray.max()
+                
+                self.destinationIndex = distanceArray.index(of: distanceArrayMax!)!
+                
+                
+                
+                print(self.destinationIndex)
+                
+                orientationCounterpoint = self.currentTrip.waypoints[self.destinationIndex]
+                
+                //Remove destination from waypoints to avoid double designation
+                self.currentTrip.waypoints.remove(at: self.destinationIndex)
+                
+                print(orientationCounterpoint)
+                
+                //Add orientationCounterpoint to AnalyzedTrip.origin or destination
+                
+                if self.currentTrip.orientation == "Destination" {
+                    self.destination = self.currentTrip.orientationPoint
+                    self.origin = orientationCounterpoint
+                } else {
+                    self.destination = orientationCounterpoint
+                    self.origin = self.currentTrip.orientationPoint
+                }
+                
+                self.buildGMUrl(counterPoint: orientationCounterpoint)
+                */
+                return
+            }
+            
+            
+            
+        }
+        task.resume()
+
+ 
+ 
+    }
 
 }
