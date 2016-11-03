@@ -14,11 +14,13 @@ struct Leg: Decodable {
     let distance: Distance
     let startLocation : StartLocation
     let endLocation : EndLocation
+    let steps : [Step]
     
     init?(json: JSON) {
         distance = ("distance" <~~ json)!
         startLocation = ("start_location" <~~ json)!
         endLocation = ("end_location" <~~ json)!
+        steps = ("steps" <~~ json)!
     }
     
 }

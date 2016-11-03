@@ -161,6 +161,8 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
             currentTrip.waypoints.append(waypoint)
         }
         
+        
+        
 
     }
 

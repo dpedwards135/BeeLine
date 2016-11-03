@@ -8,6 +8,7 @@
 
 import Gloss
 import UIKit
+import GoogleMaps
 
 class AnalyzedTrip {
     
@@ -22,6 +23,7 @@ class AnalyzedTrip {
     //Outputs
     var stopDetails : [StopDetail] = []
     var directionsMileage : Double = 0
+    var encodedPath : [GMSPath] = []
     
     init(currentTrip : Trip, viewControllerSender : UIViewController) {
         self.currentTrip = currentTrip
@@ -258,7 +260,19 @@ class AnalyzedTrip {
                     
                 }
                 
+                //Get Encoded Path 2 loops - Steps and Legs
                 
+                for leg in directions.routes[0].legs {
+                    for step in leg.steps {
+                        
+                        var pathFromEncodedPath = GMSPath.init(fromEncodedPath: step.polyline.points)
+                        print(pathFromEncodedPath)
+                        self.encodedPath.append(pathFromEncodedPath!)
+                        //self.encodedPath!.add(pathFromEncodedPath!)
+                    }
+                }
+                
+                print(self.encodedPath)
                 print(self.waypointOrder)
                 
                 //print(directions.routes[0].legs[0].distance.value)
