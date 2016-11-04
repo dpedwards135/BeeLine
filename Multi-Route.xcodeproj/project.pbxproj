@@ -14,6 +14,7 @@
 		3C4466521DA456D8006EA4B7 /* PlanTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4466511DA456D8006EA4B7 /* PlanTripViewController.swift */; };
 		3C4466541DA4580A006EA4B7 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4466531DA4580A006EA4B7 /* Trip.swift */; };
 		3C603C7F1DCB659E004712EF /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C603C7E1DCB659E004712EF /* Step.swift */; };
+		3C8BA9911DCCAEC300D4E053 /* NearbyPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8BA9901DCCAEC300D4E053 /* NearbyPlaces.swift */; };
 		3C8F27D21DB7D8AB00BAEEA6 /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27D11DB7D8AB00BAEEA6 /* MapTasks.swift */; };
 		3C8F27D41DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27D31DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift */; };
 		3C8F27D61DB8185100BAEEA6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27D51DB8185100BAEEA6 /* MenuViewController.swift */; };
@@ -66,6 +67,7 @@
 		3C4466511DA456D8006EA4B7 /* PlanTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlanTripViewController.swift; path = ../PlanTripViewController.swift; sourceTree = "<group>"; };
 		3C4466531DA4580A006EA4B7 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		3C603C7E1DCB659E004712EF /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		3C8BA9901DCCAEC300D4E053 /* NearbyPlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlaces.swift; sourceTree = "<group>"; };
 		3C8F27D11DB7D8AB00BAEEA6 /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTasks.swift; sourceTree = "<group>"; };
 		3C8F27D31DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsVCViewController.swift; sourceTree = "<group>"; };
 		3C8F27D51DB8185100BAEEA6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				3CDB40D61DC9499D00E22FDD /* StartLocation.swift */,
 				3CDB40D81DCA4C0400E22FDD /* EndLocation.swift */,
 				3C603C7E1DCB659E004712EF /* Step.swift */,
+				3C8BA9901DCCAEC300D4E053 /* NearbyPlaces.swift */,
 			);
 			path = "Multi-Route";
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				3CD828CF1DC91DCE00C9262A /* AnalyzedTrip.swift in Sources */,
 				3C8F27E21DBAB55300BAEEA6 /* Route.swift in Sources */,
 				3C0C9D851DA8000600667282 /* MyTripsViewController.swift in Sources */,
+				3C8BA9911DCCAEC300D4E053 /* NearbyPlaces.swift in Sources */,
 				3C1B4CD81DB412CC00BA9979 /* AddButtonCell.swift in Sources */,
 				3C8F27EA1DBBB0D400BAEEA6 /* CurrentTripVC.swift in Sources */,
 				3C8F27D61DB8185100BAEEA6 /* MenuViewController.swift in Sources */,
