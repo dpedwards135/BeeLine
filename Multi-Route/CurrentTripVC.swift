@@ -31,7 +31,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     @IBOutlet weak var mileageLabel: UILabel!
     
     var services = Dictionary(dictionaryLiteral:
-        ("Select Service", "select"),
+       
         ("Airport","airport"),
         ("ATM", "atm"),
         ("Bakery", "bakery"),
@@ -59,6 +59,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         //Configure nearbyServicesInput
         
@@ -140,6 +141,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
         
         self.view.bringSubview(toFront: mileageLabel)
         self.view.bringSubview(toFront: optionView)
+        adjustCameraZoom()
         
         mileageLabel.text = "Miles: " + "\(Double(round(analyzedTrip!.directionsMileage * 10)/10))"
         navigationButton.isEnabled = false
@@ -149,15 +151,19 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
+        
+        
     
     func addStopMarkersAndRoute() {
         
         let camera = GMSCameraPosition.camera(withLatitude: analyzedTrip!.stopDetails[0].stopLat, longitude: analyzedTrip!.stopDetails[0].stopLong, zoom: 6)
         
+        
         let frame = self.view.bounds.size
 
-        mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height), camera:camera)
+        mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 120, width: frame.width, height: frame.height-120), camera:camera)
         mapView!.delegate = self
         
         var stopDetailCounter = 0
@@ -197,6 +203,25 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
 
     }
     
+    func adjustCameraZoom() {
+        
+        
+        //delay(seconds: 2) { () -> () in
+            let path = GMSMutablePath()
+            for stop in (analyzedTrip?.stopDetails)! {
+                path.add(CLLocationCoordinate2DMake(stop.stopLat, stop.stopLong))
+            }
+            
+            let rectangle = GMSPolyline(path: path)
+            rectangle.map = self.mapView
+            
+            let bounds = GMSCoordinateBounds(path: path)
+            
+            self.mapView!.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 50.0))
+        
+            rectangle.map = nil
+    }
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         print("Marker Tapped \(marker.title!)")
         if Int(marker.title!)! < 100 {
@@ -220,17 +245,26 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     
     @IBAction func navigateToStop(_ sender: AnyObject) {
         
+        var lat = 0.0
+        var long = 0.0
+        
         if selectedStop == 0 {
             return
         }
         
         //Get coordinates
+        
+        if selectedStop < 100 {
     
-        let lat = self.analyzedTrip?.stopDetails[selectedStop-1].stopLat
-        let long = self.analyzedTrip?.stopDetails[selectedStop-1].stopLong
+            lat = (self.analyzedTrip!.stopDetails[selectedStop-1].stopLat)
+            long = (self.analyzedTrip!.stopDetails[selectedStop-1].stopLong)
+        } else {
+            lat = (nearbyPlaces?.results[selectedStop-100].geometry.location.lat)!
+            long = (nearbyPlaces?.results[selectedStop-100].geometry.location.long)!
+        }
         
         //GoToNavigation
-        goToNavigation(lat: lat!, long: long!)
+        goToNavigation(lat: lat, long: long)
     }
 
     
@@ -241,7 +275,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
     
-        mapItem.name = "Target location"
+        mapItem.name = stopNameLabel.text!
     
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
@@ -309,7 +343,10 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
             lat = (nearbyPlaces?.results[selectedStop-100].geometry.location.lat)!
             long = (nearbyPlaces?.results[selectedStop-100].geometry.location.long)!
         }
-        let type = services[nearbyServicesInput.text!]
+        var type = services[nearbyServicesInput.text!]
+        if type == nil {
+            type = "atm"
+        }
         let radius = 1500
         //let keyword =
         
@@ -373,6 +410,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
                 }
                 
               
+                
                 
                 return
             }

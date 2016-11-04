@@ -211,7 +211,7 @@ class AnalyzedTrip {
                 
                 
                 
-                
+                /*
                 if self.currentTrip.orientation == "Origin" {
                     var lastLegIndex = legs.endIndex - 1
                     totalDistance = totalDistance - legs[lastLegIndex].distance.value
@@ -219,7 +219,7 @@ class AnalyzedTrip {
                     totalDistance = totalDistance - legs[0].distance.value
                     
                 }
-                
+                */
                 self.directionsMileage = Double(totalDistance) * 0.000621371
                 
                 self.waypointOrder = directions.routes[0].waypointOrder
