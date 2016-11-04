@@ -30,7 +30,32 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
 
     @IBOutlet weak var mileageLabel: UILabel!
     
-    var services = ["Select Service","Hotel", "Food", "Coffee", "Gas"]
+    var services = Dictionary(dictionaryLiteral:
+        ("Select Service", "select"),
+        ("Airport","airport"),
+        ("ATM", "atm"),
+        ("Bakery", "bakery"),
+        ("Bank","bank"),
+        ("Bar", "bar"),
+        ("Cafe", "cafe"),
+        ("Convenience Store", "convenience_store"),
+        ("Florist", "florist"),
+        ("Gas Station", "gas_station"),
+        ("Library", "library"),
+        ("Lodging", "lodging"),
+        ("Meal Delivery", "meal_delivery"),
+        ("Meal Takeaway", "meal_takeaway"),
+        ("Park", "park"),
+        ("Parking", "parking"),
+        ("Pharmacy", "pharmacy"),
+        ("Post Office", "post_office"),
+        ("Restaurant", "restaurant"),
+        ("Shopping Mall", "shopping_mall"),
+        ("Store", "store"),
+        ("Subway Station", "subway_station"),
+        ("Train Station", "train_station"),
+        ("Transit Station", "transit_station") )
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -224,6 +249,8 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     
     //PickerView Configuration
     
+    
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -233,11 +260,16 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return services[row]
+        let keyArray = Array(services.keys).sorted()
+        let key = keyArray[row]
+        return key
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        nearbyServicesInput.text = services[row]
+        let keyArray = Array(services.keys).sorted()
+        let key = keyArray[row]
+        
+        nearbyServicesInput.text = key
         //pickerView.removeFromSuperview()
         
         //Launch service request
@@ -265,6 +297,9 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     
 
     func getServices() {
+        if services[nearbyServicesInput.text!] == "select" {
+            return
+        }
         var lat = 0.0
         var long = 0.0
         if selectedStop<100 {
@@ -274,7 +309,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
             lat = (nearbyPlaces?.results[selectedStop-100].geometry.location.lat)!
             long = (nearbyPlaces?.results[selectedStop-100].geometry.location.long)!
         }
-        let type = "meal_takeaway"
+        let type = services[nearbyServicesInput.text!]
         let radius = 1500
         //let keyword =
         
@@ -293,7 +328,7 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
         
         let baseURLString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
         var locationString = "location=\(lat),\(long)"
-        var typeString = "&type=" + type
+        var typeString = "&type=" + type!
         //var keywordString = "&keyword" + keyword
         
         var radiusString = "&radius=\(radius)"
