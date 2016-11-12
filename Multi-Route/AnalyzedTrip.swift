@@ -18,24 +18,93 @@ class AnalyzedTrip {
     private var origin = ""
     private var destination = ""
     private var destinationIndex = 0
-    private var senderVC : PlanTripViewController
+    private var senderVC : PlanTripVC
     
     //Outputs
     var stopDetails : [StopDetail] = []
     var directionsMileage : Double = 0
-    var encodedPath : [GMSPath] = []
+    var encodedPath : [String] = []
     
     init(currentTrip : Trip, viewControllerSender : UIViewController) {
         self.currentTrip = currentTrip
-        self.senderVC = viewControllerSender as! PlanTripViewController
+        self.senderVC = viewControllerSender as! PlanTripVC
         getCounterOrientationPoint()
+        print(currentTrip.waypoints)
         
         
     }
     
+    func saveAnalyzedTrip() {
+        let defaults = UserDefaults.standard
+        
+        defaults.set(directionsMileage, forKey: "directions_mileage")
+        
+        var pathArray : [String] = []
+        for path in encodedPath {
+            let pathString = String(describing: path) //Have to reconvert to GMSPath
+            pathArray.append(pathString)
+        }
+        
+        defaults.set(pathArray, forKey: "encoded_path")
+        
+        var stopDetailsArray : [String] = []
+        for stop in stopDetails {
+            stopDetailsArray.append(stop.stopName)
+            stopDetailsArray.append(String(stop.stopLat)) // Have to reconvert to Double
+            stopDetailsArray.append(String(stop.stopLong)) // Have to reconvert to Double
+            stopDetailsArray.append(stop.stopGeolocation)
+        }
+        
+        defaults.set(stopDetailsArray, forKey: "stop_details")
+        
+        print("Trip Saved")
+        
+    
+    }
+    
+    func retrieveAnalyzedTrip() {
+        let defaults = UserDefaults.standard
+        
+        directionsMileage = defaults.double(forKey: "directions_mileage")
+        
+        //defaults.set(directionsMileage, forKey: "directions_mileage")
+    
+        
+        var stopDetailArray : [String] = []
+        stopDetailArray = defaults.array(forKey: "stop_details") as! [String]
+        var stopDetailCount = stopDetailArray.count
+        var stopDetailArrayCounter = 0
+        while stopDetailArrayCounter < stopDetailCount {
+            let name = stopDetailArray[stopDetailArrayCounter + 0]
+            let lat = Double(stopDetailArray[stopDetailArrayCounter + 1])!
+            let long = Double(stopDetailArray[stopDetailArrayCounter + 2])!
+            let geocode = stopDetailArray[stopDetailArrayCounter + 3]
+            
+            let stopDetail = StopDetail(stopName: name, stopGeolocation: geocode, stopLat: lat, stopLong: long)
+            stopDetails.append(stopDetail)
+            stopDetailArrayCounter += 4
+        }
+        
+        var pathArray : [String] = []
+        pathArray = defaults.array(forKey: "encoded_path") as! [String]
+        
+        for path in pathArray {
+            //let gmsPath = GMSPath(fromEncodedPath: path)
+            encodedPath.append(path)
+        }
+        
+        
+
+        
+        print("Trip Retrieved")
+        
+    }
+    
+
+    
     func buildGMUrl(counterPoint : String) {
         
-        
+        print("Counterpoint : \(counterPoint)")
         
         let baseURL : String = "https://maps.googleapis.com/maps/api/directions/json?"
         let orientationString = currentTrip.orientation.lowercased() + "=" + currentTrip.orientationPoint + ",&"
@@ -120,7 +189,7 @@ class AnalyzedTrip {
                 var parsedDistanceJSON = try! JSONSerialization.jsonObject(with: rawDistanceJSON!, options: .allowFragments) as! NSDictionary
                 
                 print(parsedDistanceJSON)
-                print("Directions Parsed")
+                print("Distance Parsed")
                 
                 
                 
@@ -129,15 +198,16 @@ class AnalyzedTrip {
                     return
                 }
                 
-                return
+                //return
                 
-                print(distance.rows[0].elements[0].distance!.value)
+                print(distance.rows[0].elements[0].distance.value)
                 
                 var distanceArray : [Int] = []
                 
                 for element in distance.rows[0].elements {
                     //Pair the distance to it's waypoint and identify the largest
-                    distanceArray.append((element.distance?.value)!)
+                    distanceArray.append((element.distance.value))
+                    print(element.distance.value)
                 }
                 
                 let distanceArrayMax = distanceArray.max()
@@ -146,7 +216,7 @@ class AnalyzedTrip {
                 
                 
                 
-                print(self.destinationIndex)
+                print("Destination Index : \(self.destinationIndex) , Destination : \(self.currentTrip.waypoints[self.destinationIndex])")
                 
                 orientationCounterpoint = self.currentTrip.waypoints[self.destinationIndex]
                 
@@ -166,6 +236,7 @@ class AnalyzedTrip {
                 }
                 
                 self.buildGMUrl(counterPoint: orientationCounterpoint)
+                print("Time to Build URL")
                 
                 return
            
@@ -276,9 +347,9 @@ class AnalyzedTrip {
                 for leg in directions.routes[0].legs {
                     for step in leg.steps {
                         
-                        var pathFromEncodedPath = GMSPath.init(fromEncodedPath: step.polyline.points)
+                        var pathFromEncodedPath = step.polyline.points
                         print(pathFromEncodedPath)
-                        self.encodedPath.append(pathFromEncodedPath!)
+                        self.encodedPath.append(pathFromEncodedPath)
                         //self.encodedPath!.add(pathFromEncodedPath!)
                     }
                 }
@@ -289,6 +360,7 @@ class AnalyzedTrip {
                 //print(directions.routes[0].legs[0].distance.value)
                 print(self.directionsMileage)
                 
+                self.saveAnalyzedTrip()
                 
                 DispatchQueue.main.async {
                     

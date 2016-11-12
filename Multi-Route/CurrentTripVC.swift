@@ -14,7 +14,7 @@ import Gloss
 class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
 
-    var analyzedTrip : AnalyzedTrip?
+    var analyzedTrip : MapTrip?
     var selectedStop : Int = 0
     var nearbyPlaces : NearbyPlaces?
     var pickerView : UIPickerView?
@@ -59,7 +59,8 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
+        analyzedTrip = MapTrip()
         
         //Configure nearbyServicesInput
         

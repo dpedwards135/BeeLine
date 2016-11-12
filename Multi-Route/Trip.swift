@@ -107,6 +107,7 @@ class Trip {
             let arrayEndIndex = readArray.endIndex
             while i < arrayEndIndex {
                 savedTrip.waypoints.append(readArray[i] as String)
+                print(readArray[i])
                 i += 1
             }
         }

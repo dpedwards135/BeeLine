@@ -21,21 +21,27 @@ class MyTripsViewController: UIViewController, UITableViewDataSource, UITableVie
     // Get allTrips data
     var allTrips : [Trip] = []
     
+    @IBOutlet weak var tableView: UITableView!
 
     func getTrips() {
         
+        allTrips.removeAll()
         tripIndexArray = defaults.value(forKey: "tripIndex") as! [String]
+        print(tripIndexArray)
+        
         for String in tripIndexArray {
             
             var savedTrip = Trip(orientation: "", orientationPoint: "", waypoints: [])
             savedTrip = savedTrip.readTripFromDefaults(key: String)
             allTrips.append(savedTrip)
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Plan Trip Segue") {
-            let planTripViewController : PlanTripViewController = segue.destination as! PlanTripViewController
+            let planTripViewController : PlanTripVC = segue.destination as! PlanTripVC
+            //let planTripViewController : PlanTripViewController = segue.destination as! PlanTripViewController
             planTripViewController.tripKey = selectedTripKey
             print(selectedTripKey)
         
@@ -43,9 +49,16 @@ class MyTripsViewController: UIViewController, UITableViewDataSource, UITableVie
          }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getTrips()
+        tableView.reloadData()
+        
+        
+    }
+    
     
     override func viewDidLoad() {
-        getTrips()
+        //getTrips()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

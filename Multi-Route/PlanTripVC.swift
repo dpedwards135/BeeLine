@@ -14,9 +14,72 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
     var tripKey = ""
     var rowSelected = 0
 
+    
+    
+    @IBAction func submitTrip(_ sender: AnyObject) {
+        
+        for waypoint in currentTrip.waypoints {
+            if waypoint.characters.count < 2 {
+                let alertController = UIAlertController(title: "Multi-Route", message:
+                    "Please fill or clear all inputs", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+                return
+            }
+        }
+        
+        if !Reachability.isConnectedToNetwork() {
+            let alertController = UIAlertController(title: "Multi-Route", message:
+                "No internet connection", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
+        let analyzedTrip = AnalyzedTrip(currentTrip: currentTrip, viewControllerSender: self)
+    }
+    
+    
+    
     @IBAction func saveToMyTrips(_ sender: AnyObject) {
         print("Saving Trip")
         
+        let defaults = UserDefaults.standard
+        let dateformatter = DateFormatter()
+        
+        dateformatter.dateStyle = DateFormatter.Style.short
+        
+        dateformatter.timeStyle = DateFormatter.Style.long
+        
+        let myTripKey = dateformatter.string(from: Date())
+        
+        currentTrip.saveTripToDefaults(key: myTripKey, trip: currentTrip)
+        
+        var tripIndexKey = "tripIndex"
+        
+        if let objectCheck : AnyObject? = defaults.object(forKey: tripIndexKey) as AnyObject?? {
+            
+            var tripIndexArray = defaults.object(forKey: tripIndexKey) as! [String]
+            
+            print(tripIndexArray)
+            
+            tripIndexArray.append(myTripKey)
+            
+            defaults.set(tripIndexArray, forKey: tripIndexKey)
+        } else {
+            var tripIndexArray : [String] = []
+            tripIndexArray.append(myTripKey)
+            
+            defaults.set(tripIndexArray, forKey: tripIndexKey)
+        }
+        let alertController = UIAlertController(title: "Multi-Route", message:
+            "Your trip has been saved to My Trips", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
     }
    
     @IBAction func addWaypoint(_ sender: AnyObject) {
@@ -32,8 +95,7 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
         
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         if tripKey == "" {
             
             tripKey = "currentTrip"
@@ -51,13 +113,19 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
             //currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
         }
         
-
-
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        print(currentTrip.waypoints.count)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -126,8 +194,13 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
     
     //Use this function to save everything as it is typed
     func didChangeText(sender: Any) {
-        print("Changed Text")
+        print("Changed Text, Row Selected:")
         print(rowSelected)
+        print("Number of Waypoints:")
+        print(currentTrip.waypoints.count)
+        for waypoint in currentTrip.waypoints {
+            print(waypoint)
+        }
         var indexPath = IndexPath(row: rowSelected, section: 0)
         let cell = tableView.cellForRow(at: indexPath) as! PlanTripTableViewCell
         
@@ -139,8 +212,8 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
             currentTrip.waypoints[rowNumber-1] = cell.cellTextInput.text!
         }
         
-        print(cell.cellTextInput.text!)
-        print()
+        //print(cell.cellTextInput.text!)
+        
         
     }
     /*
@@ -268,8 +341,10 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
         var orientationType = cell.cellLabel.text!
         if orientationType == "Origin" {
             cell.cellLabel.text = "Destination"
+            currentTrip.orientation = "Destination"
         } else {
             cell.cellLabel.text = "Origin"
+            currentTrip.orientation = "Origin"
         }
     }
     

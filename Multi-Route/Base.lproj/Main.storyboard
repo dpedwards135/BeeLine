@@ -10,7 +10,7 @@
         <scene sceneID="CrA-bP-nOE">
             <objects>
                 <navigationController id="nYJ-xc-YhQ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zZt-tN-gk8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zZt-tN-gk8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -92,7 +92,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Return to Trip"/>
                                 <connections>
-                                    <segue destination="XEJ-aF-U2x" kind="show" id="yuz-Iw-ibz"/>
+                                    <segue destination="Bgu-T8-2ns" kind="show" id="Jam-Mn-A1Y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nR5-ZA-yOb">
@@ -119,7 +119,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Plan Trip"/>
                                 <connections>
-                                    <segue destination="uVk-60-2WP" kind="show" id="XD6-r8-bBM"/>
+                                    <segue destination="XEJ-aF-U2x" kind="show" id="Uma-3y-nXW"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="GT2-VT-psa">
@@ -144,7 +144,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="DestinationCell" rowHeight="82" id="4Ix-W6-EPw" customClass="PlanTripCellTableViewCell" customModule="Multi_Route" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="82"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ix-W6-EPw" id="xCV-3E-sAh">
                                     <frame key="frameInset" width="375" height="82"/>
@@ -180,7 +180,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddButtonCell" id="D0X-SU-Hdm" customClass="AddButtonCell" customModule="Multi_Route" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="174" width="375" height="82"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D0X-SU-Hdm" id="scl-Ae-43j">
                                     <frame key="frameInset" width="375" height="82"/>
@@ -217,7 +217,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Plan Trip" id="Wy5-dP-hfe">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="xRf-iv-gJe">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VLg-0e-2Cw">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VLg-0e-2Cw">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -305,6 +305,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <state key="normal" title="Submit"/>
                                             <connections>
+                                                <action selector="submitTrip:" destination="XEJ-aF-U2x" eventType="touchUpInside" id="adi-4i-8Uu"/>
                                                 <action selector="submitTrip:" destination="uVk-60-2WP" eventType="touchUpInside" id="bhT-S7-z5w"/>
                                             </connections>
                                         </button>
@@ -331,6 +332,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Bgu-T8-2ns" kind="show" identifier="Current Trip Segue" id="aRP-zy-4QR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUv-ut-DaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -394,7 +398,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="uVk-60-2WP" kind="show" identifier="Plan Trip Segue" id="EFK-2q-ImK"/>
+                        <outlet property="tableView" destination="eJM-I0-B4f" id="IJK-ep-CdI"/>
+                        <segue destination="XEJ-aF-U2x" kind="show" identifier="Plan Trip Segue" id="YO5-bo-MYw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CgG-Qs-Ll3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -518,6 +523,7 @@
         <image name="Welcome Background" width="414" height="628"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XD6-r8-bBM"/>
+        <segue reference="YO5-bo-MYw"/>
+        <segue reference="aRP-zy-4QR"/>
     </inferredMetricsTieBreakers>
 </document>

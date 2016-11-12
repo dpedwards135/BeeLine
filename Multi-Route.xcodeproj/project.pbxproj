@@ -17,7 +17,8 @@
 		3C8BA9911DCCAEC300D4E053 /* NearbyPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8BA9901DCCAEC300D4E053 /* NearbyPlaces.swift */; };
 		3C8BA9991DD0E74200D4E053 /* PlanTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8BA9981DD0E74200D4E053 /* PlanTripVC.swift */; };
 		3C8BA99B1DD0EE4000D4E053 /* PlanTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8BA99A1DD0EE4000D4E053 /* PlanTripTableViewCell.swift */; };
-		3C8F27D21DB7D8AB00BAEEA6 /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27D11DB7D8AB00BAEEA6 /* MapTasks.swift */; };
+		3C8BA99D1DD7669A00D4E053 /* MapTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8BA99C1DD7669A00D4E053 /* MapTrip.swift */; };
+		3C8BA9A21DD78A9300D4E053 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8BA9A11DD78A9200D4E053 /* Reachability.swift */; };
 		3C8F27D41DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27D31DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift */; };
 		3C8F27D61DB8185100BAEEA6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27D51DB8185100BAEEA6 /* MenuViewController.swift */; };
 		3C8F27E01DBAACAD00BAEEA6 /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F27DF1DBAACAD00BAEEA6 /* Directions.swift */; };
@@ -72,7 +73,8 @@
 		3C8BA9901DCCAEC300D4E053 /* NearbyPlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlaces.swift; sourceTree = "<group>"; };
 		3C8BA9981DD0E74200D4E053 /* PlanTripVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanTripVC.swift; sourceTree = "<group>"; };
 		3C8BA99A1DD0EE4000D4E053 /* PlanTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanTripTableViewCell.swift; sourceTree = "<group>"; };
-		3C8F27D11DB7D8AB00BAEEA6 /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTasks.swift; sourceTree = "<group>"; };
+		3C8BA99C1DD7669A00D4E053 /* MapTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTrip.swift; sourceTree = "<group>"; };
+		3C8BA9A11DD78A9200D4E053 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		3C8F27D31DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsVCViewController.swift; sourceTree = "<group>"; };
 		3C8F27D51DB8185100BAEEA6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		3C8F27DF1DBAACAD00BAEEA6 /* Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
@@ -140,6 +142,54 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3C8BA99E1DD76E7A00D4E053 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3C8F27E91DBBB0D400BAEEA6 /* CurrentTripVC.swift */,
+				3C8F27D31DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift */,
+				3C1B4CD71DB412CC00BA9979 /* AddButtonCell.swift */,
+				3C8F27D51DB8185100BAEEA6 /* MenuViewController.swift */,
+				3C0C9D841DA8000600667282 /* MyTripsViewController.swift */,
+				3C0C9D861DA8096E00667282 /* PlanTripCellTableViewCell.swift */,
+				3C8BA99A1DD0EE4000D4E053 /* PlanTripTableViewCell.swift */,
+				3C8BA9981DD0E74200D4E053 /* PlanTripVC.swift */,
+				3C4466511DA456D8006EA4B7 /* PlanTripViewController.swift */,
+				3C44664D1DA3BC86006EA4B7 /* TestViewController.swift */,
+				3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3C8BA99F1DD76ED100D4E053 /* Gloss */ = {
+			isa = PBXGroup;
+			children = (
+				3C8F27E31DBAB6C100BAEEA6 /* Leg.swift */,
+				3C8F27DF1DBAACAD00BAEEA6 /* Directions.swift */,
+				3C8F27E51DBAB74000BAEEA6 /* Distance.swift */,
+				3CFE7AEC1DBD93580086B6B1 /* Element.swift */,
+				3CDB40D81DCA4C0400E22FDD /* EndLocation.swift */,
+				3CD828D21DC92B5C00C9262A /* GeocodedWaypoint.swift */,
+				3CFE7AEA1DBD83AA0086B6B1 /* MatrixDistance.swift */,
+				3C8BA9901DCCAEC300D4E053 /* NearbyPlaces.swift */,
+				3C8F27E11DBAB55300BAEEA6 /* Route.swift */,
+				3CFE7AEE1DBD942C0086B6B1 /* Row.swift */,
+				3CDB40D61DC9499D00E22FDD /* StartLocation.swift */,
+				3C603C7E1DCB659E004712EF /* Step.swift */,
+				3CD828D01DC9264C00C9262A /* StopDetail.swift */,
+			);
+			name = Gloss;
+			sourceTree = "<group>";
+		};
+		3C8BA9A01DD76F0000D4E053 /* Trip Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3CD828CE1DC91DCE00C9262A /* AnalyzedTrip.swift */,
+				3C8BA99C1DD7669A00D4E053 /* MapTrip.swift */,
+				3C4466531DA4580A006EA4B7 /* Trip.swift */,
+			);
+			name = "Trip Classes";
+			sourceTree = "<group>";
+		};
 		3CFC7C0C1DA04A5D00B3292F = {
 			isa = PBXGroup;
 			children = (
@@ -165,38 +215,15 @@
 		3CFC7C171DA04A5D00B3292F /* Multi-Route */ = {
 			isa = PBXGroup;
 			children = (
-				3C8F27D51DB8185100BAEEA6 /* MenuViewController.swift */,
-				3C4466511DA456D8006EA4B7 /* PlanTripViewController.swift */,
-				3C0C9D861DA8096E00667282 /* PlanTripCellTableViewCell.swift */,
-				3C0C9D841DA8000600667282 /* MyTripsViewController.swift */,
-				3C4466531DA4580A006EA4B7 /* Trip.swift */,
-				3C44664D1DA3BC86006EA4B7 /* TestViewController.swift */,
+				3C8BA9A01DD76F0000D4E053 /* Trip Classes */,
+				3C8BA99F1DD76ED100D4E053 /* Gloss */,
+				3C8BA99E1DD76E7A00D4E053 /* ViewControllers */,
 				3CFC7C181DA04A5D00B3292F /* AppDelegate.swift */,
-				3CFC7C1A1DA04A5D00B3292F /* ViewController.swift */,
-				3CFC7C1C1DA04A5D00B3292F /* Main.storyboard */,
-				3C8F27D31DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift */,
-				3C8F27D11DB7D8AB00BAEEA6 /* MapTasks.swift */,
-				3C1B4CD71DB412CC00BA9979 /* AddButtonCell.swift */,
 				3CFC7C1F1DA04A5D00B3292F /* Assets.xcassets */,
-				3CFC7C211DA04A5D00B3292F /* LaunchScreen.storyboard */,
 				3CFC7C241DA04A5D00B3292F /* Info.plist */,
-				3C8F27DF1DBAACAD00BAEEA6 /* Directions.swift */,
-				3C8F27E11DBAB55300BAEEA6 /* Route.swift */,
-				3C8F27E31DBAB6C100BAEEA6 /* Leg.swift */,
-				3C8F27E51DBAB74000BAEEA6 /* Distance.swift */,
-				3C8F27E91DBBB0D400BAEEA6 /* CurrentTripVC.swift */,
-				3CFE7AEA1DBD83AA0086B6B1 /* MatrixDistance.swift */,
-				3CFE7AEC1DBD93580086B6B1 /* Element.swift */,
-				3CFE7AEE1DBD942C0086B6B1 /* Row.swift */,
-				3CD828CE1DC91DCE00C9262A /* AnalyzedTrip.swift */,
-				3CD828D01DC9264C00C9262A /* StopDetail.swift */,
-				3CD828D21DC92B5C00C9262A /* GeocodedWaypoint.swift */,
-				3CDB40D61DC9499D00E22FDD /* StartLocation.swift */,
-				3CDB40D81DCA4C0400E22FDD /* EndLocation.swift */,
-				3C603C7E1DCB659E004712EF /* Step.swift */,
-				3C8BA9901DCCAEC300D4E053 /* NearbyPlaces.swift */,
-				3C8BA9981DD0E74200D4E053 /* PlanTripVC.swift */,
-				3C8BA99A1DD0EE4000D4E053 /* PlanTripTableViewCell.swift */,
+				3CFC7C211DA04A5D00B3292F /* LaunchScreen.storyboard */,
+				3CFC7C1C1DA04A5D00B3292F /* Main.storyboard */,
+				3C8BA9A11DD78A9200D4E053 /* Reachability.swift */,
 			);
 			path = "Multi-Route";
 			sourceTree = "<group>";
@@ -412,7 +439,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C8F27D21DB7D8AB00BAEEA6 /* MapTasks.swift in Sources */,
 				3C4466541DA4580A006EA4B7 /* Trip.swift in Sources */,
 				3CFE7AED1DBD93580086B6B1 /* Element.swift in Sources */,
 				3CFE7AEB1DBD83AA0086B6B1 /* MatrixDistance.swift in Sources */,
@@ -420,7 +446,9 @@
 				3C8F27E61DBAB74000BAEEA6 /* Distance.swift in Sources */,
 				3C8F27D41DB8145D00BAEEA6 /* InviteFriendsVCViewController.swift in Sources */,
 				3C603C7F1DCB659E004712EF /* Step.swift in Sources */,
+				3C8BA9A21DD78A9300D4E053 /* Reachability.swift in Sources */,
 				3C0C9D871DA8096E00667282 /* PlanTripCellTableViewCell.swift in Sources */,
+				3C8BA99D1DD7669A00D4E053 /* MapTrip.swift in Sources */,
 				3CD828CF1DC91DCE00C9262A /* AnalyzedTrip.swift in Sources */,
 				3C8F27E21DBAB55300BAEEA6 /* Route.swift in Sources */,
 				3C8BA9991DD0E74200D4E053 /* PlanTripVC.swift in Sources */,

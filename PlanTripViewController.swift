@@ -53,7 +53,7 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
         if (segue.identifier == "Current Trip Segue") {
             let currentTripViewController : CurrentTripVC = segue.destination as! CurrentTripVC
             
-            currentTripViewController.analyzedTrip = analyzedTrip
+            //currentTripViewController.analyzedTrip = analyzedTrip
             
             print("Preparing for Segue")
         }
