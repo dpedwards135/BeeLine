@@ -38,11 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PlanTripViewController.swift"
-            timestampString = "499729017.002989"
+            timestampString = "500227488.317137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "PlanTripViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Multi-Route/AnalyzedTrip.swift"
-            timestampString = "499882711.754002"
+            timestampString = "499986187.53391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "getDirections(gmURL:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -102,11 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Multi-Route/AnalyzedTrip.swift"
-            timestampString = "499882711.754002"
+            timestampString = "499986187.53391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "getDirections(gmURL:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,6 +202,22 @@
             startingLineNumber = "263"
             endingLineNumber = "263"
             landmarkName = "navigateToStop(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Multi-Route/PlanTripVC.swift"
+            timestampString = "500649428.914575"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

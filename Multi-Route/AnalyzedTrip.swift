@@ -39,9 +39,13 @@ class AnalyzedTrip {
         
         let baseURL : String = "https://maps.googleapis.com/maps/api/directions/json?"
         let orientationString = currentTrip.orientation.lowercased() + "=" + currentTrip.orientationPoint + ",&"
-        var waypointsString = "waypoints=optimize:true"
-        for waypoint in currentTrip.waypoints {
-            waypointsString.append("|\(waypoint)")
+        var waypointsString = ""
+        if currentTrip.waypoints.count > 0 {
+            waypointsString = "waypoints=optimize:true"
+            for waypoint in currentTrip.waypoints {
+                waypointsString.append("|\(waypoint)")
+        
+            }
         }
         var counterOrientationPoint = counterPoint
         var counterOrientationPointString : String
@@ -102,6 +106,8 @@ class AnalyzedTrip {
             
             if error == nil {
                 
+                
+                
                 print("Error: Nil")
                 
                 /* Raw JSON data (...simliar to the format you might receive from the network) */
@@ -116,18 +122,22 @@ class AnalyzedTrip {
                 print(parsedDistanceJSON)
                 print("Directions Parsed")
                 
+                
+                
                 guard let distance = MatrixDistance(json: parsedDistanceJSON as! JSON) else {
                     print ("unable to parse")
                     return
                 }
                 
-                print(distance.rows[0].elements[0].distance.value)
+                return
+                
+                print(distance.rows[0].elements[0].distance!.value)
                 
                 var distanceArray : [Int] = []
                 
                 for element in distance.rows[0].elements {
                     //Pair the distance to it's waypoint and identify the largest
-                    distanceArray.append(element.distance.value)
+                    distanceArray.append((element.distance?.value)!)
                 }
                 
                 let distanceArrayMax = distanceArray.max()
@@ -158,6 +168,7 @@ class AnalyzedTrip {
                 self.buildGMUrl(counterPoint: orientationCounterpoint)
                 
                 return
+           
             }
             
             

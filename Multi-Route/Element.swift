@@ -11,12 +11,21 @@ import Gloss
 
 class Element: Decodable {
     
-    let distance: Distance
+    let distance: Distance?
+    let status : String
     
     // MARK: - Deserialization
     
     required init?(json: JSON) {
+        
+        do {
+        self.status = ("status" <~~ json)!
+        
         self.distance = ("distance" <~~ json)!
+        } catch {
+            print("Distance is nil")
+        }
+        
         
         
     }

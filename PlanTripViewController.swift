@@ -10,13 +10,14 @@ import Gloss
 
 // MARK: - ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 
-class PlanTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PlanTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     var currentTrip = Trip(orientation: "", orientationPoint: "", waypoints: ["", ""])
     var directionsMileage : Double = 0
     var waypointOrder : [Int] = []
     var stopDetails : [StopDetail] = []
     var analyzedTrip : AnalyzedTrip?
+    
     
     
     @IBOutlet weak var saveTripButton: UIButton!
@@ -103,6 +104,8 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         
+        //self.tableView.allowsMultipleSelectionDuringEditing = true
+        
         //Put code here that checks if there is a key sent in to access a new trip, otherwise assign "currentTrip" key
         // ELSE:
         if tripKey == "" {
@@ -187,11 +190,13 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
         
        /* var cell = tableView.dequeueReusableCell(withIdentifier: "DestinationCell")! as! PlanTripCellTableViewCell  */
         
+        
+        
         if indexPath.row <= currentTrip.waypoints.endIndex {
             
         
-            var cell = tableView.dequeueReusableCell(withIdentifier: "DestinationCell")! as! PlanTripCellTableViewCell
             
+            var cell = tableView.dequeueReusableCell(withIdentifier:"DestinationCell")! as! PlanTripCellTableViewCell
             
             
             // Set the name
@@ -203,7 +208,21 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
                 
-            } else {
+            } else if indexPath.row == 1 {
+                cell.mainLabel?.text = "Stop"
+                if currentTrip.waypoints == [] {
+                    cell.textInput?.text = ""
+                } else {
+                    cell.textInput?.text = currentTrip.waypoints[indexPath.row - 1 ]
+                    
+                }
+                cell.clearButton?.setTitle("", for: UIControlState.normal)
+                //cell.clearButton?.addTarget(self, action: #selector(originDestinationSwitch), for: UIControlEvents.touchUpInside)
+                cell.clearButton?.isEnabled = false
+                
+                
+                
+            } else{
                 cell.mainLabel?.text = "Stop"
                 if currentTrip.waypoints == [] {
                     cell.textInput?.text = ""
@@ -242,12 +261,14 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func addWaypoint() {
-        writeCurrentTrip()
+        if currentTrip.waypoints.count <= 21 {
         
-        currentTrip.waypoints.append("")
-        
-        tableView.reloadData()
-        
+            writeCurrentTrip()
+            currentTrip.waypoints.append("")
+            tableView.reloadData()
+        } else {
+            return
+        }
     }
     
     func removeWaypoint(sender:UIButton) {
@@ -260,209 +281,28 @@ class PlanTripViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.reloadData()
     }
     
+    func saveStop() {
+        
+    }
     
-    /* Old API Query -> Moved to AnalyzeTrip
     
-    func buildGMUrl(counterPoint : String) {
-        
-        
-        
-        let baseURL : String = "https://maps.googleapis.com/maps/api/directions/json?"
-        let orientationString = currentTrip.orientation.lowercased() + "=" + currentTrip.orientationPoint + ",&"
-        var waypointsString = "waypoints=optimize:true"
-        for waypoint in currentTrip.waypoints {
-            waypointsString.append("|\(waypoint)")
-        }
-        var counterOrientationPoint = counterPoint
-        var counterOrientationPointString : String
-        if currentTrip.orientation == "Origin" {
-            counterOrientationPointString = "destination=\(counterOrientationPoint),&"
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+ 
+    //private func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) {
+        print("DidDeselect")
+        var checkIndexPath = IndexPath(row: 0, section: 0)
+        if indexPath == checkIndexPath {
+            print("This was the origin row")
         } else {
-            counterOrientationPointString = "origin=\(counterOrientationPoint),&"
+            print("This was waypoint \(String(describing: indexPath))")
         }
-        //let destinationString = "&destination=" + currentTrip.orientationPoint
-        let keyString = "&key=AIzaSyAXKUya8igVCUOUAhlOVcatMYzzsM-1pJQ"
+        //Upon deselecting a row: 
+        //if row number = 0, save editText field to currentTrip.origin.
+        //else save editText field to currentTrip.waypoints[row number]
         
-        var urlString = baseURL + orientationString + counterOrientationPointString + waypointsString + keyString
+        //This replaces writeCurrentTrip, because all elements should be saved prior to needing to run that function
         
-        urlString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
-        
-        print(urlString)
-        
-        let gmURL = URL(string: urlString)
-        
-        getDirections(gmURL: gmURL!)
-        
-        
-        return
+        //I will also need to change the tableView set up so that it checks the currentTrip for all the cell data and populates if there is something there and keeps it blank if there isn't
     }
-    
-    func getCounterOrientationPoint() {
-        
-        var orientationCounterpoint = ""
-        
-        let baseURLString = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial"
-        let originString = "&origins=" + currentTrip.orientationPoint
-        var destinationString : String = "&destinations="
-        var waypointCounter = 0
-        for waypoint in currentTrip.waypoints {
-            if waypointCounter == 0 {
-                destinationString.append(waypoint)
-            } else {
-                destinationString.append("|" + waypoint)
-            }
-            
-            waypointCounter += 1
-        }
-        let keyString = "&key=AIzaSyAXKUya8igVCUOUAhlOVcatMYzzsM-1pJQ"
-        
-        var distanceMatrixString = baseURLString + originString + destinationString + keyString
-        
-        //distanceMatrixString = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyAXKUya8igVCUOUAhlOVcatMYzzsM-1pJQ"
-        
-        distanceMatrixString = distanceMatrixString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
-        
-        var distanceMatrixURL = URL(string: distanceMatrixString)
-        
-
-        
-        print(distanceMatrixURL)
-        
-        let task = URLSession.shared.dataTask(with: distanceMatrixURL!) { (data, response, error) in
-            
-            if error == nil {
-                
-                print("Error: Nil")
-                
-                /* Raw JSON data (...simliar to the format you might receive from the network) */
-                var rawDistanceJSON = try? Data(contentsOf: distanceMatrixURL!)
-                
-                /* Error object */
-                var parsingDistanceError: NSError? = nil
-                
-                /* Parse the data into usable form */
-                var parsedDistanceJSON = try! JSONSerialization.jsonObject(with: rawDistanceJSON!, options: .allowFragments) as! NSDictionary
-                
-                print(parsedDistanceJSON)
-                print("Directions Parsed")
-                
-                guard let distance = MatrixDistance(json: parsedDistanceJSON as! JSON) else {
-                    print ("unable to parse")
-                    return
-                }
-                
-                print(distance.rows[0].elements[0].distance.value)
-                
-                var distanceArray : [Int] = []
-
-                for element in distance.rows[0].elements {
-                    //Pair the distance to it's waypoint and identify the largest
-                    distanceArray.append(element.distance.value)
-                }
-                
-                let distanceArrayMax = distanceArray.max()
-                
-                let destinationIndex = distanceArray.index(of: distanceArrayMax!)
-                
-                print(destinationIndex)
-                
-                orientationCounterpoint = self.currentTrip.waypoints[destinationIndex!]
-                
-                print(orientationCounterpoint)
-                
-                self.buildGMUrl(counterPoint: orientationCounterpoint)
-                
-                return
-            }
-            
-            
-            
-        }
-        task.resume()
-    
-    }
-
-    
-    func getDirections(gmURL : URL) {
-        
-        let task = URLSession.shared.dataTask(with: gmURL) { (data, response, error) in
-            
-            if error == nil {
-                
-                print("Error: Nil")
-                
-                /* Raw JSON data (...simliar to the format you might receive from the network) */
-                var rawDirectionsJSON = try? Data(contentsOf: gmURL)
-                
-                /* Error object */
-                var parsingDirectionsError: NSError? = nil
-                
-                /* Parse the data into usable form */
-                var parsedDirectionsJSON = try! JSONSerialization.jsonObject(with: rawDirectionsJSON!, options: .allowFragments) as! NSDictionary
-                
-                print(parsedDirectionsJSON)
-                print("Directions Parsed")
-                
-                guard let directions = Directions(json: parsedDirectionsJSON as! JSON) else {
-                    print ("unable to parse")
-                    return
-                }
-                
-                print(directions.status)
-                
-                var totalDistance = 0
-                var legs : [Leg]
-                legs = (directions.routes[0].legs)
-                print(legs.count)
-                for item in legs{
-                    
-                    var distance = item.distance
-                    var value = distance.value
-                    
-                    totalDistance = totalDistance + value
-                    
-                    
-                }
-                
-         
-                
-                
-                if self.currentTrip.orientation == "Origin" {
-                    var lastLegIndex = legs.endIndex - 1
-                    totalDistance = totalDistance - legs[lastLegIndex].distance.value
-                } else {
-                    totalDistance = totalDistance - legs[0].distance.value
-                    
-                }
-                
-                self.directionsMileage = Double(totalDistance) * 0.000621371
-                
-                self.waypointOrder = directions.routes[0].waypointOrder
-                
-                
-                
-                
-                
-                
-                print(self.waypointOrder)
-                
-                //print(directions.routes[0].legs[0].distance.value)
-                print(self.directionsMileage)
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "Current Trip Segue", sender: self)
-                }
-                
-                return
-            }
-            
-            
-            
-        }
-        task.resume()
-        
-        return
-
-    }
- */
     
 }
