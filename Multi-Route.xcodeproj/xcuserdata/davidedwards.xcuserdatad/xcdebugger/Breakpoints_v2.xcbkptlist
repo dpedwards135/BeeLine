@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Multi-Route/MyTripsViewController.swift"
-            timestampString = "500664707.646435"
+            timestampString = "500669151.782589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "getTrips()"
             landmarkType = "7">
          </BreakpointContent>

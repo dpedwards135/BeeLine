@@ -34,12 +34,25 @@ class MapTrip: NSObject {
         func retrieveAnalyzedTrip() {
             let defaults = UserDefaults.standard
             
+            
+            if let objectCheck : AnyObject? = defaults.object(forKey: "stop_details") as AnyObject??  {
+                
+            } else {
+                
+                var stopDetail = StopDetail(stopName: "Welcome to BeeLine", stopGeolocation: "", stopLat: 38.9072, stopLong: -77.03)
+                stopDetails.append(stopDetail)
+                
+                return
+            }
+            
             directionsMileage = defaults.double(forKey: "directions_mileage")
             
             //defaults.set(directionsMileage, forKey: "directions_mileage")
             
             
             var stopDetailArray : [String] = []
+            
+            
             stopDetailArray = defaults.array(forKey: "stop_details") as! [String]
             var stopDetailCount = stopDetailArray.count
             var stopDetailArrayCounter = 0

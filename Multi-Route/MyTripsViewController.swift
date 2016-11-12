@@ -26,7 +26,14 @@ class MyTripsViewController: UIViewController, UITableViewDataSource, UITableVie
     func getTrips() {
         
         allTrips.removeAll()
-        tripIndexArray = defaults.value(forKey: "tripIndex") as! [String]
+        
+        if let objectCheck : AnyObject? = defaults.object(forKey: "tripIndex") as AnyObject??  {
+            tripIndexArray = defaults.value(forKey: "tripIndex") as! [String]
+        } else {
+            tripIndexArray = []
+        }
+        
+        //tripIndexArray = defaults.value(forKey: "tripIndex") as! [String]
         print(tripIndexArray)
         
         for String in tripIndexArray {

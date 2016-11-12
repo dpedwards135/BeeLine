@@ -19,7 +19,12 @@ class Row: Decodable {
     // MARK: - Deserialization
     
     required init?(json: JSON) {
-        self.elements = ("elements" <~~ json)!
+        
+        guard let elements: [Element] = "elements" <~~ json else {
+            return nil
+        }
+        
+        self.elements = elements
         
         
     }

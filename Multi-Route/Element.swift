@@ -18,10 +18,12 @@ class Element: Decodable {
     
     required init?(json: JSON) {
         
-        
+        guard let distance: Distance = "distance" <~~ json else {
+            return nil
+        }
         self.status = ("status" <~~ json)!
         
-        self.distance = ("distance" <~~ json)!
+        self.distance = distance
         
         
         

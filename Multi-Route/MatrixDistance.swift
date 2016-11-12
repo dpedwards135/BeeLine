@@ -19,7 +19,12 @@ class MatrixDistance: Decodable {
     // MARK: - Deserialization
     
     required init?(json: JSON) {
-        self.rows = ("rows" <~~ json)!
+        
+        guard let rows: [Row] = "rows" <~~ json else {
+            return nil
+        }
+        
+        self.rows = rows
         
         
     }

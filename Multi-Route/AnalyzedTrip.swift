@@ -195,9 +195,20 @@ class AnalyzedTrip {
                 
                 guard let distance = MatrixDistance(json: parsedDistanceJSON as! JSON) else {
                     print ("unable to parse")
+                    OperationQueue.main.addOperation {
+                       
+                    
+                    let alertController = UIAlertController(title: "Destination Unreachable", message:
+                        "Please check inputs", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                    
+                    self.senderVC.present(alertController, animated: true, completion: nil)
+                    
+                    }
                     return
-                }
                 
+                    
+                }
                 //return
                 
                 print(distance.rows[0].elements[0].distance.value)
