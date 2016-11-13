@@ -96,6 +96,7 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         if tripKey == "" {
             
             tripKey = "currentTrip"
@@ -174,6 +175,7 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
             cell.cellTextInput.text = currentTrip.waypoints[tag]
             cell.cellTextInput.tag = indexPath.row
             cell.cellTextInput.addTarget(self, action: #selector(didChangeText), for: .editingChanged)
+            
             cell.cellLabel.text = "Stop"
             cell.cellButton.setTitle("Clear", for: UIControlState.normal)
             cell.cellButton.addTarget(self, action: #selector(self.removeWaypoint), for: UIControlEvents.touchUpInside)
@@ -191,6 +193,8 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
        
         
     }
+    
+ 
     
     //Use this function to save everything as it is typed
     func didChangeText(sender: Any) {
