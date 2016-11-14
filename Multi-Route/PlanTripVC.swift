@@ -14,7 +14,9 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
     var tripKey = ""
     var rowSelected = 0
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var submitButton: UIButton!
     
     @IBAction func submitTrip(_ sender: AnyObject) {
         
@@ -40,6 +42,17 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
         
         currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
         let analyzedTrip = AnalyzedTrip(currentTrip: currentTrip, viewControllerSender: self)
+        self.submitButton.isEnabled = false
+        
+        //activityIndicator.center = self.view.center
+        
+        activityIndicator.startAnimating()
+        /*
+        activityView.center = self.view.center
+        activityView.startAnimating()
+ */
+        
+        //self.view.addSubview(activityIndicator)
     }
     
     
@@ -97,6 +110,7 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         if tripKey == "" {
             
             tripKey = "currentTrip"
@@ -123,9 +137,12 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         print(currentTrip.waypoints.count)
+        tableView.reloadData()
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
     }
 
@@ -168,7 +185,24 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
             cell.cellButton.addTarget(self, action: #selector(self.originDestinationSwitch), for: UIControlEvents.touchUpInside)
             
             return cell
-        } else if indexPath.row <= currentTrip.waypoints.count{
+        }else if indexPath.row == 1{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! PlanTripTableViewCell
+            var tag = indexPath.row-1
+            
+            cell.cellTextInput.text = currentTrip.waypoints[tag]
+            cell.cellTextInput.tag = indexPath.row
+            cell.cellTextInput.addTarget(self, action: #selector(didChangeText), for: .editingChanged)
+            
+            cell.cellLabel.text = "Stop"
+            cell.cellButton.setTitle("", for: UIControlState.normal)
+            cell.cellButton.isEnabled = false
+            cell.cellButton.addTarget(self, action: #selector(self.removeWaypoint), for: UIControlEvents.touchUpInside)
+            cell.cellButton.tag = tag
+            return cell
+            
+        }
+        
+        else if indexPath.row <= currentTrip.waypoints.count{
             var cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! PlanTripTableViewCell
             var tag = indexPath.row-1
                 
@@ -185,6 +219,11 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
         } else {
             var cell = tableView.dequeueReusableCell(withIdentifier: "AddButtonCell") as! AddButtonCell
             cell.addButton.addTarget(self, action: #selector(addWaypoint), for: UIControlEvents.touchUpInside)
+            self.submitButton = cell.submitButton
+            self.submitButton.isEnabled = true
+            self.activityIndicator = cell.activityIndicator
+            self.activityIndicator.stopAnimating()
+            
             
             return cell
             

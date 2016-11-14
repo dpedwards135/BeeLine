@@ -11,6 +11,8 @@ import UIKit
 class AddButtonCell: UITableViewCell {
     
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
 

@@ -68,8 +68,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bee" translatesAutoresizingMaskIntoConstraints="NO" id="GT2-VT-psa">
+                                <frame key="frameInset" minX="67" minY="112" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPs-E1-7tr">
-                                <frame key="frameInset" minX="114" minY="531" width="181" height="72.999999999999886"/>
+                                <frame key="frameInset" minX="97" minY="521" width="181" height="72.999999999999886"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Return to Trip"/>
@@ -78,7 +82,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nR5-ZA-yOb">
-                                <frame key="frameInset" minX="114" minY="450" width="181" height="72.999999999999957"/>
+                                <frame key="frameInset" minX="97" minY="440" width="181" height="72.999999999999957"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Invite Friends"/>
@@ -87,7 +91,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vB1-vl-gq8">
-                                <frame key="frameInset" minX="114" minY="369" width="181" height="72.999999999999957"/>
+                                <frame key="frameInset" minX="97" minY="359" width="181" height="72.999999999999957"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="My Trips"/>
@@ -96,7 +100,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDx-2j-btt">
-                                <frame key="frameInset" minX="114" minY="288" width="181" height="73"/>
+                                <frame key="frameInset" minX="97" minY="278" width="181" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Plan Trip"/>
@@ -104,10 +108,6 @@
                                     <segue destination="XEJ-aF-U2x" kind="show" id="Uma-3y-nXW"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bee" translatesAutoresizingMaskIntoConstraints="NO" id="GT2-VT-psa">
-                                <frame key="frameInset" minX="84" minY="112" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -283,7 +283,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uk3-Ot-1UP">
-                                            <frame key="frameInset" minX="143" minY="17" width="89" height="48"/>
+                                            <frame key="frameInset" minX="143" minY="14" width="89" height="48"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <state key="normal" title="Submit"/>
                                             <connections>
@@ -291,6 +291,10 @@
                                                 <action selector="submitTrip:" destination="uVk-60-2WP" eventType="touchUpInside" id="bhT-S7-z5w"/>
                                             </connections>
                                         </button>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="C3v-MS-0wO">
+                                            <frame key="frameInset" minX="-63" minY="28" width="375" height="20"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Uk3-Ot-1UP" firstAttribute="centerY" secondItem="Kmu-M3-kZF" secondAttribute="centerY" id="Dpm-nz-EJn"/>
@@ -298,7 +302,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="C3v-MS-0wO" id="cK3-GH-biC"/>
                                     <outlet property="addButton" destination="ChI-HB-Agl" id="ZGg-NP-6ov"/>
+                                    <outlet property="submitButton" destination="Uk3-Ot-1UP" id="1ZS-gR-Hua"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -607,7 +613,7 @@
         <image name="Welcome Background" width="414" height="628"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YO5-bo-MYw"/>
-        <segue reference="aRP-zy-4QR"/>
+        <segue reference="Uma-3y-nXW"/>
+        <segue reference="Jam-Mn-A1Y"/>
     </inferredMetricsTieBreakers>
 </document>
