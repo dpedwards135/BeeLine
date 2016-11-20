@@ -326,7 +326,7 @@
 					3CFC7C141DA04A5D00B3292F = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3KKW9HZ8SS;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					3CFC7C281DA04A5E00B3292F = {
 						CreatedOnToolsVersion = 8.0;
@@ -621,11 +621,14 @@
 			baseConfigurationReference = EF4C19CF047C0E1BA13269A4 /* Pods-Multi-Route.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 3KKW9HZ8SS;
 				INFOPLIST_FILE = "Multi-Route/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.multiroute.development;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beeline.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "12491a55-a250-4c1d-9dec-22ca81704bd1";
+				PROVISIONING_PROFILE_SPECIFIER = BeeLine;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -636,11 +639,14 @@
 			baseConfigurationReference = 27242C8CA59CCA45CBFFBB66 /* Pods-Multi-Route.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 3KKW9HZ8SS;
 				INFOPLIST_FILE = "Multi-Route/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.multiroute.development;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beeline.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "12491a55-a250-4c1d-9dec-22ca81704bd1";
+				PROVISIONING_PROFILE_SPECIFIER = BeeLine;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
