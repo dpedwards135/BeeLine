@@ -39,6 +39,7 @@ class PlanTripVC: UITableViewController, UITextFieldDelegate {
             self.present(alertController, animated: true, completion: nil)
             return
         }
+ 
         
         currentTrip.saveTripToDefaults(key: tripKey, trip: currentTrip)
         let analyzedTrip = AnalyzedTrip(currentTrip: currentTrip, viewControllerSender: self)

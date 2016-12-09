@@ -277,8 +277,23 @@ class CurrentTripVC: UIViewController, GMSMapViewDelegate, UIPickerViewDataSourc
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
     
         mapItem.name = stopNameLabel.text!
-    
-        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        /*
+        let alertController = UIAlertController(title: "Multi-Route", message:
+            "You are now leaving BeeLine application", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
+    */
+        
+        
+        let alertController = UIAlertController(title: title, message: "You are now leaving BeeLine application", preferredStyle:UIAlertControllerStyle.alert)
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+        { action -> Void in
+            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        })
+        self.present(alertController, animated: true, completion: nil)
+        
     }
 
     
